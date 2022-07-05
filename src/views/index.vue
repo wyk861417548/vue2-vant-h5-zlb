@@ -50,24 +50,11 @@ export default {
     };
   },
 
-  created(){
-    this.mock()
-  },
-
   methods: {
     handleClick(){
       this.$config.scan().then(res=>{
         console.log('scan',res);
       })
-    },
-
-    async mock(){
-      // this.$post(this.$api.common.mockLogin+'?mid=2')
-      const xxx = await this.$api.common.mock(2);
-      const ddd = this.$api.common.orgL().then(res=>{
-        console.log('ddd',res);
-      });
-      console.log('666',xxx,ddd);
     },
 
     // 上传图片测试
