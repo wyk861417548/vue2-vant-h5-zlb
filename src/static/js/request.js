@@ -66,9 +66,11 @@ service.interceptors.response.use(res => {
  * @returns 
  */
 export function request(params){
-  return service(params).then(res=>{
-    return requestHandle(res,params.opt);
-  }).catch(()=>{})
+  return new Promise((resolve) => {
+    service(params).then(res=>{
+      return requestHandle(res,params.opt,resolve);
+    }).catch(()=>{})
+  })
 }
 
 // 统一请求动画计数
@@ -81,9 +83,9 @@ function loading(boolean){
 }
 
 // 请求返回处理
-function requestHandle(res,opt){
+function requestHandle(res,opt,resolve){
   if (res && res.data.code == 200 || opt.back) {
-    return res.data;
+    resolve(res.data)
   }
   res && handle(res.data)
 }
