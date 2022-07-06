@@ -86,6 +86,7 @@ function loading(boolean){
 function requestHandle(res,opt,resolve){
   if (res && res.data.code == 200 || opt.back) {
     resolve(res.data)
+    return;
   }
   res && handle(res.data)
 }
