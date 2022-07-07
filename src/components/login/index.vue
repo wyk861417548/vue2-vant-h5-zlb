@@ -1,6 +1,6 @@
 <template>
+  <span></span>
 </template>
-
 <script>
 export default {
   // 在登录后的界面引入当前组件 并调用this.$refs.login.init();  
@@ -22,13 +22,7 @@ export default {
  
       // 登录成功后后台回传埋点信息给前端埋点
       if(arr.length > 0 ){
-        dd.ready({
-          developer: 'jiangc@dtdream.com',
-          usage: ['dd.device.location.get'],
-          remark: '获取位置信息（GPS）'
-        }, function () {
-          that.setbury(arr);
-        })
+        that.setbury(arr);
       }
     },
 
@@ -41,7 +35,7 @@ export default {
     setbury(arr){
       console.log("开始埋点");
       // 初始化
-      (function(w, d, s, q, i) { w[q] = w[q] || []; var f = d.getElementsByTagName(s)[0],j = d.createElement(s); j.async = true; j.id = 'beacon-aplus'; j.src = 'https://d.alicdn.com/alilog/mlog/aplus.js?id=202951085'; f.parentNode.insertBefore(j, f); })(window, document, 'script', 'aplus_queue');
+      (function(w, d, s, q) { w[q] = w[q] || []; var f = d.getElementsByTagName(s)[0],j = d.createElement(s); j.async = true; j.id = 'beacon-aplus'; j.src = 'https://d.alicdn.com/alilog/mlog/aplus.js?id=202951085'; f.parentNode.insertBefore(j, f); })(window, document, 'script', 'aplus_queue');
       
       // 基础埋点
       aplus_queue.push({ action: 'aplus.setMetaInfo', arguments: ['aplus-rhost-v', 'alog.zjzwfw.gov.cn'] });
@@ -50,28 +44,26 @@ export default {
       
     
       // 获取地理位置以及PV日志 埋点
-      dd.device.location.get ({
-        onSuccess: function(data) {
-          localStorage.site = JSON.stringify({long:data.longitude,lati:data.latitude})
-          console.log("localStorage.site",localStorage.site);
-          aplus_queue.push({ 
-            action: 'aplus.sendPV', 
-            arguments: [
-              {is_auto: false, },
-              {
-                long:data.longitude, 
-                lati:data.latitude,
-                userType:"puser",
-                miniAppId:'00000000',
-                miniAppName:'xxxx'
-              }
+      ZWJSBridge.getLocation().then((data) => {
+        localStorage.site = JSON.stringify({long:data.longitude,lati:data.latitude})
+        console.log("localStorage.site",localStorage.site);
+        aplus_queue.push({ 
+          action: 'aplus.sendPV', 
+          arguments: [
+            {is_auto: false, },
+            {
+              long:data.longitude, 
+              lati:data.latitude,
+              userType:"puser",
+              miniAppId:'xxxx',
+              miniAppName:'xxx'
+            }
           ] 
-          });
-        },
-        onFail: function(error) {
-          console.log("onFail",error);
-        }
-      })
+        });
+      }).catch((error) => {
+        console.log(error);
+      });
+
       aplus_queue.push({action: 'aplus.setMetaInfo', arguments: ['_user_id', arr[1]]});
       aplus_queue.push({action: 'aplus.setMetaInfo',  arguments: ['_user_nick',arr[2]]});
     },
