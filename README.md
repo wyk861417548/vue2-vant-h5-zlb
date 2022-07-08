@@ -87,7 +87,7 @@ computed:{
 ## 2.原生scroll
 ```
 <Scroll ref="scroll" @scroll="getData">
-  <div class="list"  v-for='(item,index) in dataList' :key='index' @click="$skip" data-url="/BScrollDetail">
+  <div class="list"  v-for='(item,index) in dataList' :key='index' @click="$skip" data-url="/ScrollDetail">
     {{item.name}} -- {{item.age}}
   </div>
 </Scroll>
@@ -192,79 +192,4 @@ methods:{
 | :--- | -------------------------------------------- | :----- | :----- |
 | code  | 二维码值                                 | String | Qrcode      |
 | color | 二维码颜色 | String | |
-
-## BetterScroll滚动组件使用
-```
-<BScroll ref="scroll" @change="change" :vdata="dataList">
-  <div class="list"  v-for='(item,index) in dataList' :key='index' @click="$skip" data-url="/index2">
-    {{item.name}} -- {{item.age}}
-  </div>
-</BScroll>
-
-data () {
-  return {
-    dataList:[],
-
-    count:1,
-
-    data:{
-      page: 1,
-      limit: 10,
-      total: 0,
-    }
-  };
-},
-
-methods:{
-  //真实调用接口
-  getData(){
-    this.$post('url',this.data).then(({data}) => {
-      this.data.page++;
-      this.dataList.push(...data.list);
-
-      this.isScroll(this.dataList,data.total);
-    })
-  },
-
-  //模拟生成数据
-  getDataMock(){
-    setTimeout(()=>{
-      this.count++;
-      for (let i = 0; i < 20; i++) {
-        this.dataList.push({name:this.count+"---i---"+i,age:i})
-        console.log("正在填充数据");
-      }
-      // 注意一定要保证  数据渲染完成
-      this.isScroll(this.dataList,res.total);
-      
-    },2000)
-  },
-
-  isScroll(list,total){
-    //上拉加载默认状态status  0：可加载 1：无数据 2已结束
-    this.$nextTick(()=>{
-      if(!this.$refs.scroll) return;
-
-      this.$refs.scroll.finishPullUp();
-      
-      if(list.length < 1){
-        this.$refs.scroll.status = 1;
-        return;
-      }
-
-      if(total <= list.length ){
-        this.$refs.scroll.status = 2;
-        return;
-      }
-      
-    })
-  },
-
-  //上划加载 
-  change(){
-    this.getData();
-  },
-}
-
-```
 

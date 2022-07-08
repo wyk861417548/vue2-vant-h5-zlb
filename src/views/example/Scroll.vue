@@ -1,6 +1,6 @@
 <template>
   <Scroll ref="scroll" @scroll="getData">
-    <div class="list"  v-for='(item,index) in dataList' :key='index' @click="$skip" data-url="/BScrollDetail">
+    <div class="list"  v-for='(item,index) in dataList' :key='index' @click="$skip" data-url="/ScrollDetail">
       {{item.name}} -- {{item.age}}
     </div>
   </Scroll>

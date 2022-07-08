@@ -9,9 +9,8 @@ const router =  new Router({
 
     // 栗子
     {path: '/',component: () => import(/* webpackChunkName: "about" */ '@/views/example/tab/index.vue')},
-    {path: '/BScroll',component: () => import(/* webpackChunkName: "about" */ '@/views/example/BScroll.vue'),meta: {title:"滚动页面",keepAlive:true}},
     {path: '/Scroll',component: () => import(/* webpackChunkName: "about" */ '@/views/example/Scroll.vue'),meta: {title:"滚动页面",keepAlive:true}},
-    {path: '/BScrollDetail',component: () => import(/* webpackChunkName: "about" */ '@/views/example/BScrollDetail.vue'),meta:{title:"滚动详情",isBack:true}},
+    {path: '/ScrollDetail',component: () => import(/* webpackChunkName: "about" */ '@/views/example/ScrollDetail.vue'),meta:{title:"滚动详情",isBack:true}},
     {path: '/v-lazy',component: () => import(/* webpackChunkName: "about" */ '@/views/example/v-lazy.vue')},
     {path: '/swiper',component: () => import(/* webpackChunkName: "about" */ '@/views/example/swiper.vue')}
   ]
