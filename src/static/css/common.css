@@ -95,6 +95,7 @@ input[type="checkbox"]:checked::after{content: "";position: absolute;left: 50%;t
 /* 占满当前父元素盒子 */
 .j-full-curbox{position:absolute;top:0;left:0;right:0;bottom:0;margin:0;overflow:auto;}
 .j-full-fixed{position:fixed;top:0;left:0;right:0;bottom:0;margin:0;overflow:auto;}
+.j-vh{width: 100vw;height: 100vh;box-sizing: border-box;overflow: auto;}
 
 /* 居中 */
 .j-full-center{position: absolute;top:50%;left: 50%;transform: translate(-50%,-50%);}
@@ -108,6 +109,10 @@ input[type="checkbox"]:checked::after{content: "";position: absolute;left: 50%;t
 
 /*flex布局下也能生效 文字超出省略号   */
 .text-overflowMut{display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1;overflow: hidden;}
+
+/* 图片与背景cover */
+.j-img-fit{object-fit:cover}
+.j-bg-fit{background-repeat: no-repeat;background-position:center;background-size: cover;}
 
 .m-5{margin:5px;}
 .mb-5{margin-bottom:5px;}
