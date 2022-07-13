@@ -1,6 +1,8 @@
 <template>
   <div ref="expandMore" class="expandMore">
-    <slot :style="styles(show)"></slot>
+    <main :style="styles(show)">
+      <slot></slot>
+    </main>
     
     <footer v-if="hidden">
       <section class="more" v-show="show" @click="show = false">

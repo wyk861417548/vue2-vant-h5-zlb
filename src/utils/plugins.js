@@ -25,3 +25,16 @@ Vue.use(Lazyload, {
   preLoad: 1,
   attempt: 1,
 });
+
+// 禁用页面滚动
+Vue.prototype.$banScroll = ()=>{
+  const mo = function(e){e.preventDefault()};
+  document.body.style.overflow='hidden';
+  document.addEventListener("touchmove",mo,{passive:false});//禁止页面滑动
+}
+// 取消页面滚动限制
+Vue.prototype.$canScroll = ()=>{
+  var mo=function(e){e.preventDefault();};
+  document.body.style.overflow='';//出现滚动条
+  document.removeEventListener("touchmove",mo,false);
+}
