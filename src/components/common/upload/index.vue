@@ -67,9 +67,7 @@ export default {
       previewImg:'',
 
       // 已上传图片
-      uploadList:[
-        {path: require('@/assets/images/home/banner.png')}
-      ],
+      uploadList:[],
     };
   },
 
