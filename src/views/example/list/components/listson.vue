@@ -1,6 +1,6 @@
 <template>
   <Scroll ref="scroll" @scroll="getData">
-    <div class="list"  v-for='(item,index) in dataList' :key='index' @click="$skip" data-url="/ScrollDetail">
+    <div class="list"  v-for='(item,index) in dataList' :key='index' @click="$skip" data-url="/example/list/detail">
       {{item.name}} -- {{item.age}}
     </div>
   </Scroll>
@@ -8,9 +8,7 @@
 </template>
 
 <script>
-import keepAlive from '@/mixins/keepAlive.js'
 export default {
-  mixins:[keepAlive],
   data () {
     return {
       dataList:[],
@@ -27,21 +25,12 @@ export default {
     };
   },
 
-  activated(){
-    // 如果不是从详情页进入
-    if(!this.$route.meta.isBack){
-      this.dataList = [];
-      this.count = 1;
-      this.$refs.scroll.status =3;
-      this.getData();
-    }
-
-    this.$route.meta.isBack = false;
+  created(){
+    this.getData();
   },
 
   methods: {
     getData(){
-      console.log('------------getData-----------');
       setTimeout(()=>{
         this.count++;
         for (let i = 0; i < 10; i++) {
@@ -49,7 +38,7 @@ export default {
         }
 
         this.isScroll(this.dataList,30)
-      },2000)
+      },500)
     },
 
     //上拉加载默认状态 0：可加载， 1：无数据， 2已结束， 3:加载中

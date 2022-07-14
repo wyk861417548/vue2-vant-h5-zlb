@@ -21,7 +21,7 @@ input[type=checkbox]{width:auto;}
 input[type=radio]{width:auto;}
 input::placeholder{color:#959595;}
 textarea{width:100%;border:1px solid #dcdee2;border-radius: 2px; -webkit-appearance: none;}
-textarea:focus{outline: none;border:1px solid #57a3f3;}
+textarea:focus{outline: none;border:1px solid #57a3f3;resize: none;}
 img{max-width: 100%;}
 i{margin-right:2px ;}
 

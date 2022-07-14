@@ -29,7 +29,7 @@ export default {
   methods: {
     skip(){
       this.$store.commit('setToken','xxxxxxxxx');
-      this.$router.push({path:'/index'})
+      this.$router.push({path:'/example/index'})
     }
   }
 }

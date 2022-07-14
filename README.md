@@ -84,7 +84,7 @@ computed:{
 },
 ```
 
-## 2.原生scroll
+## 2.原生scroll（单页面无切换）如果有切换请看示例
 ```
 <Scroll ref="scroll" @scroll="getData">
   <div class="list"  v-for='(item,index) in dataList' :key='index' @click="$skip" data-url="/ScrollDetail">
@@ -120,8 +120,6 @@ export default {
       this.$refs.scroll.status =3;
       this.getData();
     }
-
-    this.$route.meta.isBack = false;
   },
 
   methods: {
@@ -133,7 +131,7 @@ export default {
         }
 
         this.isScroll(this.dataList,30)
-      },2000)
+      },500)
     },
 
     
@@ -164,7 +162,12 @@ export default {
 ```
 ## 3上传图片组件
 ```
-<upload path='fullUrl' :max='3' @change="changeUpload"></upload>
+<upload :mode="false" path='fullUrl' :max='3' @change="changeUpload">
+  //自定义icon
+  <template v-slot:icon>
+    <van-icon name="photograph" size="25" />
+  </template>
+</upload>
 
 methods:{
   changeUpload({name,value}){
@@ -180,6 +183,7 @@ methods:{
 | max  | *最大上传数*                                 | Number | 1      |
 | path | *上传接口返回图片字段*（预览展示的图片地址） | String | path   |
 | name | *用于父组件接受已上传的图片名称*             | String | upload |
+| mode | *上传ui模式(false:背景色模式 true:虚线模式)*             | Boolean | false |
 
 ### Events
 

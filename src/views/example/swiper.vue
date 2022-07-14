@@ -1,11 +1,9 @@
 <template>
-  <div style="height:600px;width:600px;margin:auto;border:1px solid #f33;">
-    <Swiper :option="option">
-      <swiper-slide style="height:10px" v-for="(item,index) in list" :key="index">
-        <p>{{index}}</p>
-      </swiper-slide>
-    </Swiper>
-  </div>
+  <Swiper :option="option">
+    <swiper-slide v-for="(item,index) in list" :key="index">
+      <p>{{index}}</p>
+    </swiper-slide>
+  </Swiper>
 
 </template>
 
@@ -41,10 +39,6 @@ export default {
           stopOnLastSlide: false,
           disableOnInteraction: false
         },
-
-        direction : 'vertical',
-        // height:'100%',
-        slidesPerView: '10',
       }
     };
   },
@@ -58,8 +52,8 @@ export default {
 </script>
 <style lang='less' scoped>
   p{
-    height: 45px;
-    background: #ff3;
+    height: 100px;
+    background: #ddd;
     margin-bottom:10px;
   }
 

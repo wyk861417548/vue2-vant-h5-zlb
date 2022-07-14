@@ -1,0 +1,32 @@
+<template>
+  <listpage v-if="init"></listpage>
+</template>
+
+<script>
+import keepAlive from '@/mixins/keepAlive.js'
+import listpage from './listpage.vue'
+
+export default {
+  components:{
+    listpage
+  },
+  mixins:[keepAlive],
+
+  data(){
+    return {
+      init:true
+    }
+  },
+
+  activated(){
+    // 如果不是从详情页返回  整个页面重新加载
+    if(!this.$route.meta.isBack){
+      this.init = false;
+      setTimeout(()=>{
+        this.init = true
+      },100)
+    }
+    
+  }
+}
+</script>
