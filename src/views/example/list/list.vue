@@ -22,9 +22,9 @@ export default {
     // 如果不是从详情页返回  整个页面重新加载
     if(!this.$route.meta.isBack){
       this.init = false;
-      setTimeout(()=>{
+      this.$nextTick(()=>{
         this.init = true
-      },100)
+      })
     }
     
   }

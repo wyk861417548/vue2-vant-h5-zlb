@@ -13,12 +13,12 @@
 
       <section class="box">
         <h2 class="box-title">测试不是详情返回缓存页面，是否刷新</h2>
-        <button class="el-button el-button-primary" @click="$skip" data-url='/example/Scroll'>scroll-单一</button>
+        <button class="el-button el-button-primary" @click="$skip('/example/Scroll')">scroll-单一</button>
       </section>
 
       <section class="box">
         <h2 class="box-title">测试不是详情返回缓存页面，是否刷新</h2>
-        <button class="el-button el-button-primary" @click="$skip" data-url='/example/list'>scroll-切换</button>
+        <button class="el-button el-button-primary" @click="$skip('/example/list')">scroll-切换</button>
       </section>
 
       <section class="box">

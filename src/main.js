@@ -23,15 +23,12 @@ Vue.prototype.$validator = validator;
 
 /** 
  * 页面跳转  
- *    如果设置data-url 使用路由地址跳转 （this.$route.query接受参数，地址栏上可见参数）
- *     params 是可以
+ *   url地址
+ *   params 传参
  * */
-Vue.prototype.$skip = (e,params)=>{
-  var dataset = e.target.dataset;
-  console.log("dataset",dataset);
-  var url = dataset.url;
+ Vue.prototype.$skip = (url,params)=>{
   if(!url)return;
-  app.$router.push({path:url,query:params?params:''});
+  app.$router.push({path:url,query:params});
 }
 
 

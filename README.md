@@ -87,7 +87,7 @@ computed:{
 ## 2.原生scroll（单页面无切换）如果有切换请看示例
 ```
 <Scroll ref="scroll" @scroll="getData">
-  <div class="list"  v-for='(item,index) in dataList' :key='index' @click="$skip" data-url="/ScrollDetail">
+  <div class="list"  v-for='(item,index) in dataList' :key='index'>
     {{item.name}} -- {{item.age}}
   </div>
 </Scroll>
