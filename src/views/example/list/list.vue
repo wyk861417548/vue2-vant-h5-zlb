@@ -14,11 +14,12 @@ export default {
 
   data(){
     return {
-      init:true
+      init:false
     }
   },
 
   activated(){
+    console.log('activated',this.$route.meta.isBack);
     // 如果不是从详情页返回  整个页面重新加载
     if(!this.$route.meta.isBack){
       this.init = false;

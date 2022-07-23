@@ -49,6 +49,7 @@ export function call(phone){
   });
 }
 
+// 0:普通 1:微信 2:支付宝 3:浙里办
 export function checkBrowser() {
   if (/MicroMessenger/.test(window.navigator.userAgent)) {
     return 1;
