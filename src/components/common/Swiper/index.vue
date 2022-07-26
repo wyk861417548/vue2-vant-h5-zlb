@@ -8,7 +8,9 @@
     @mouseleave.native="on_bot_leave"
   >
     <slot>
-      <img style="display:block;" width="100%" src="@/static/images/lazy/default_banner.png" alt="">
+      <swiper-slide>
+        <img style="display:block;" width="100%" src="@/static/images/lazy/default_banner.png" alt="">
+      </swiper-slide>
     </slot>
     <div class="swiper-pagination" slot="pagination"></div>
   </swiper>
