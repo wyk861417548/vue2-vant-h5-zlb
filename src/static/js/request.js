@@ -66,9 +66,9 @@ service.interceptors.response.use(res => {
  * @returns 
  */
 export function request(params){
-  return new Promise((resolve) => {
+  return new Promise((resolve,reject) => {
     service(params).then(res=>{
-      return requestHandle(res,params.opt,resolve);
+      return requestHandle(res,params.opt,resolve,reject);
     }).catch(()=>{})
   })
 }
@@ -83,11 +83,12 @@ function loading(boolean){
 }
 
 // 请求返回处理
-function requestHandle(res,opt,resolve){
+function requestHandle(res,opt={},resolve,reject){
   if (res && res.data.code == 200 || opt.back) {
     resolve(res.data)
     return;
   }
+  reject(res)
   res && handle(res.data)
 }
 

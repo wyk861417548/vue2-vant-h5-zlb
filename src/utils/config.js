@@ -3,6 +3,7 @@ import * as $kCompass from "./config/kCompass";
 import * as $idCard from "./config/idCard";
 import * as $url from "./config/url";
 import * as $zlb from "./config/zlb";
+import * as $LazyloadImg from './config/LazyloadImg'
 
 export default {
   ...$loading,
@@ -10,6 +11,8 @@ export default {
   ...$idCard,
   ...$url,
   ...$zlb,
+  ...$LazyloadImg,
+  
   // 关闭当前游览器
   closeBrowser:function(){
     if (/MicroMessenger/.test(window.navigator.userAgent)) {

@@ -19,6 +19,9 @@ const router =  new Router({
 
 // 全局路由守卫
 router.beforeEach((to,path,next)=>{
+  if(document.querySelector("#Y_tip")){
+    document.body.removeChild(document.querySelector("#Y_tip"));
+  }
   document.title = to.meta.title?to.meta.title:"模板"
   next();
 })
