@@ -10,15 +10,18 @@
 <script>
 export default{
   created(){
+    // 将游览器环境存入vuex
+    this.$store.commit('setBrower',this.$config.checkBrowser());
+
     ZWJSBridge.onReady(() => {console.log('初始化完成后，执⾏bridge⽅法')})
+
     window.addEventListener('beforeunload',this.beforeunloadFn);
   },
 
   methods:{
     beforeunloadFn(){
       this.$store.commit('updateState');
-    },
-
+    }
   }
 }
 </script>

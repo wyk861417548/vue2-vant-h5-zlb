@@ -4,6 +4,7 @@ import * as $idCard from "./config/idCard";
 import * as $url from "./config/url";
 import * as $zlb from "./config/zlb";
 import * as $LazyloadImg from './config/LazyloadImg'
+import * as $load from './config/load'
 
 export default {
   ...$loading,
@@ -12,6 +13,7 @@ export default {
   ...$url,
   ...$zlb,
   ...$LazyloadImg,
+  ...$load,
   
   // 关闭当前游览器
   closeBrowser:function(){
@@ -33,9 +35,7 @@ export default {
     
     console.log('isAndroid',isAndroid);
     if(isAndroid){
-      // let audio = new Audio(`https://dict.youdao.com/dictvoice?audio=${text}&type=1`)
       let audio = new Audio(`http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=2&text=` + encodeURI(text))
-      // let audio =  new Audio('https://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&text=' + text);
       audio.pause();
       audio.play();
       return;
@@ -99,23 +99,7 @@ export default {
       return item;
     },[])
     return arrCl;
-  },
-
-  // 数组对象排序  若 a 小于 b 在排序后的数组中 a 应该出现在 b 之前，则返回一个小于 0 的值
-  /**
-   * @param {*} arr  需要排序的数组
-   * @param {*} key  根据数组中的某个值来去重
-   * @param {*} type 默认升序
-   * @returns 
-   */
-  sort(arr,key,type){
-    return arr.sort(function(a,b){
-      if(type){
-        return -(a[key] - b[key])
-      }
-      return a[key] - b[key];
-    })
-  },
+  }
 }
 
 Date.prototype.format = function (fmt) { 

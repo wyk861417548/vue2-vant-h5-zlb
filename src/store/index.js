@@ -37,6 +37,11 @@ const store = new Vuex.Store({
     
     setToken(state,data){
       state.token = data;
+    },
+
+    // 设置游览器环境全局使用
+    setBrower(state,data){
+      state.brower = data;
     }
 
   }

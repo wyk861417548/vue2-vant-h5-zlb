@@ -83,9 +83,10 @@ input[type="checkbox"]:checked::after{content: "";position: absolute;left: 50%;t
 /* flex布局 */
 .flex{display: flex;}
 .flex-fit{flex:1;}
+.j-flex{display: flex;justify-content: space-between;align-items: center;}
 .j-flex-a{display: flex;align-items: center;}
 .j-flex-b{display: flex;justify-content: space-between;}
-.j-flex{display: flex;justify-content: space-between;align-items: center;}
+.j-flex-flow{display: flex;flex-flow: column;justify-content: space-between;}
 .j-flex-col{display: flex;flex-direction: column;}
 .j-flex-row{ display: flex;flex-direction: row;flex-wrap: wrap;}
 
