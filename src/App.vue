@@ -11,6 +11,7 @@
 export default{
   created(){
     // 将游览器环境存入vuex
+    console.log(',this.$config.checkBrowser()',this.$config.checkBrowser());
     this.$store.commit('setBrower',this.$config.checkBrowser());
 
     ZWJSBridge.onReady(() => {console.log('初始化完成后，执⾏bridge⽅法')})

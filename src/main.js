@@ -6,6 +6,8 @@ import config from "@/utils/config.js";
 import api from "@/utils/api.js";
 import validator from "@/static/js/validator.js";
 import 'lib-flexible/flexible'
+// 适老化使用这个
+// import windowflex from '@/utils/flexible'
 
 // 各种插件引入
 import "@/utils/plugins.js";
@@ -38,5 +40,5 @@ var app = new Vue({
   render: h => h(App)
 }).$mount('#app')
 
-
+// windowflex(window, window['lib'] || (window['lib'] = {}),app);
 export default app
