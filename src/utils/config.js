@@ -40,8 +40,7 @@ export default {
       zlb: userAgent.indexOf('dtdreamweb') > -1,
   
       // 浙里办支付宝小程序
-      zlbminiprogram:
-        userAgent.indexOf('miniprogram') > -1 && userAgent.indexOf('alipay') > -1,
+      zlbminiprogram: userAgent.indexOf('miniprogram') > -1 && userAgent.indexOf('alipay') > -1,
   
       // 是否为手机
       isMobile: /android|iphone|symbianos|windows phone|ipad|ipod/.test(userAgent),
