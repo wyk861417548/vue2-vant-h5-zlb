@@ -38,3 +38,30 @@ Vue.prototype.$canScroll = ()=>{
   document.body.style.overflow='';//出现滚动条
   document.removeEventListener("touchmove",mo,false);
 }
+
+
+/**
+ * @param {*} SCROLL 滚动组件ref
+ * @param {*} list  滚动列表
+ * @param {*} total 列表总长度
+ * @returns 
+ */
+//上拉加载默认状态 0：可加载， 1：无数据， 2已结束， 3:加载中
+Vue.prototype.$isScroll = (SCROLL,list,total)=>{
+  //处理数据还在加载中，已经离开本页面
+  if(!SCROLL) return;
+
+  // 加载状态结束
+  SCROLL.status = 0;
+
+  // 无数据
+  if(list.length < 1){
+    SCROLL.status = 1;
+    return;
+  }
+
+  // 如果已经是最后一页了 结束
+  if(total <= list.length){
+    SCROLL.status = 2;
+  }
+}
