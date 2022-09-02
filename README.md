@@ -98,6 +98,8 @@ export default {
   mixins:[keepAlive],
   data () {
     return {
+      init:false,
+
       dataList:[],
 
       count:1,
@@ -119,6 +121,8 @@ export default {
       this.count = 1;
       this.$refs.scroll.status =3;
       this.getData();
+    }else if(!this.init){
+      this.init = true;
     }
   },
 
@@ -130,31 +134,8 @@ export default {
           this.dataList.push({name:this.count+"---i---"+i,age:i})
         }
 
-        this.isScroll(this.dataList,30)
+        this.$isScroll(this.$refs.scroll,this.dataList,30)
       },500)
-    },
-
-    
-    isScroll(list,total){
-      //上拉加载默认状态 0：可加载 1：无数据 2已结束 3:加载中
-      const SCROLL = this.$refs.scroll;
-
-      //处理数据还在加载中，已经离开本页面
-      if(!SCROLL) return;
-
-      // 加载状态结束
-      SCROLL.status = 0;
-
-      // 无数据
-      if(list.length < 1){
-        SCROLL.status = 1;
-        return;
-      }
-
-      // 如果已经是最后一页了 结束
-      if(total <= list.length){
-        SCROLL.status = 2;
-      }
     },
   }
 }

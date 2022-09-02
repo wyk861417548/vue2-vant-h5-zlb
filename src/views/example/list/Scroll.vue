@@ -13,6 +13,8 @@ export default {
   mixins:[keepAlive],
   data () {
     return {
+      init:false,
+
       dataList:[],
 
       count:1,
@@ -28,18 +30,23 @@ export default {
   },
 
   activated(){
-    // 如果不是从详情页进入
+    // 如果不是从详情页进入 init 为了解决页面刷新导致数据重新加载问题
     if(!this.$route.meta.isBack){
-      this.dataList = [];
-      this.count = 1;
-      this.$refs.scroll.status =3;
-      this.getData();
+      this.initData();
+    }else if(!this.init){
+      this.init = true;
+      this.initData();
     }
-
-    this.$route.meta.isBack = false;
   },
 
   methods: {
+    initData(){
+      this.dataList = [];
+      this.count = 1;
+      this.$refs.scroll.status =3;
+      console.log('458464646');
+      this.getData();
+    },
     getData(){
       setTimeout(()=>{
         this.count++;

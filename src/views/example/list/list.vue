@@ -25,6 +25,8 @@ export default {
       this.$nextTick(()=>{
         this.init = true
       })
+    }else if(!this.init){
+      this.init = true;
     }
     
   }

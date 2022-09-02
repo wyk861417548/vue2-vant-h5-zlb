@@ -5,8 +5,6 @@ Vue.use(Router)
 
 const router =  new Router({
   routes: [
-    {path: '/',redirect:'/ceshi'},
-    {path: '/ceshi',component: () => import(/* webpackChunkName: "about" */ '@/views/ceshi.vue')},
     // 栗子
     {path: '/',component: () => import(/* webpackChunkName: "about" */ '@/views/example/tab/index.vue')},
     {path: '/example/index',component: () => import(/* webpackChunkName: "about" */ '@/views/example/index.vue')},
