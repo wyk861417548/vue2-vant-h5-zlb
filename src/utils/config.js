@@ -62,7 +62,7 @@ export default {
     
     console.log('isAndroid',isAndroid);
     if(isAndroid){
-      let audio = new Audio(`http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=2&text=` + encodeURI(text))
+      let audio = new Audio(`https://dict.youdao.com/dictvoice?audio=${text}&type=1`)
       audio.pause();
       audio.play();
       return;
@@ -98,6 +98,27 @@ export default {
       a.dispatchEvent(event); // 触发a的单击事件
     };
     image.src = src;
+  },
+
+  /**
+   * 生成随机字母  
+   * @param {*} min 只传min 生成min位随机数
+   * @param {*} max 传了min和max 生成min~max之间的随机数
+   * @returns 
+   */
+   randomWord(min, max) {
+    var str = "",range = min,
+    arr = ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f",];
+    //随机产生 如果max存在随机产生min到max之间的随机数长度
+    if (max) {
+      range = Math.round(Math.random() * (max - min)) + min;
+    }
+    
+    for (var i = 0; i < range; i++) {
+      let pos = Math.round(Math.random() * (arr.length - 1));
+      str += arr[pos];
+    }
+    return str;
   },
 
   /**

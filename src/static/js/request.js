@@ -55,7 +55,6 @@ service.interceptors.response.use(res => {
       }
       return Promise.reject(error.response);
     }
-    F.tip(error.msg ? error.msg : "请稍后再试");
   }
 );
 

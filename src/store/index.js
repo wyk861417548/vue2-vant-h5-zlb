@@ -11,12 +11,13 @@ let state = {
 
 //初始化状态数据
 let initState = function(){
-  if(!sessionStorage[localDataKey])return state;
-	const tempData = JSON.parse(sessionStorage[localDataKey])
-	for(var i in tempData){
-		state[i] = tempData[i];
-	}
-  sessionStorage[localDataKey] = '';
+  if(sessionStorage[localDataKey]){
+    const tempData = JSON.parse(sessionStorage[localDataKey])
+    for(var i in tempData){
+      state[i] = tempData[i];
+    }
+    sessionStorage[localDataKey] = '';
+  }
 	return state;
 }
 

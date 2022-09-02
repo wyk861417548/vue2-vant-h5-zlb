@@ -41,6 +41,7 @@ Vue.prototype.$canScroll = ()=>{
 
 
 /**
+ * 搭配滚动组件一起使用
  * @param {*} SCROLL 滚动组件ref
  * @param {*} list  滚动列表
  * @param {*} total 列表总长度
