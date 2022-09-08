@@ -1,3 +1,5 @@
+@import './vant.less';
+
 .el-button-sub {color: #fff;background-color: #4C77F5;border-color: #4C77F5;}
 .el-button-sub:hover {background: #6c89e1;border-color: #6c89e1; color: #fff;}
 .el-button-dark {color: #fff;background-color: #788DCE;border-color: #788DCE;}
@@ -8,19 +10,28 @@
 .el-button-cyan:hover {background: #d5fcf0;border-color: #d5fcf0; color: #fff;}
 
 /* 文字基本颜色 */
-.text-primary{color:#4C77F5};
+.text-primary{color:#485067};
 .text-success{color:#4cd964};
 .text-warning{color:#f0ad4e};
 .text-error{color:#dd524d};
 .text-inverse{color:#fff};//反色
-.text-grey{color:#333};//辅助灰色，如加载更多的提示信息
+.text-grey{color:#808080};//辅助灰色，如加载更多的提示信息
 .text-placeholder{color:#808080};
-.text-959{color:#9599AC};
+.text-money{color: #E31D15;} //金额主题色
+.text-000{color: #000;}
+.text-333{color:#333};
+.text-666{color:#666};
 .text-999{color:#999}
 
-.page-bg{
-  background-color: #FAFAFA;
-}
+.page-bg{background-color: #FAFAFA;}
+
+// .5px 线条  t:上  b下
+.b-t,.b-b{position: relative;}
+.b-t::before,.b-b::before{content: "";position: absolute;z-index: 10;width: 100%;height: 1px;background-color: #EAEAEA;transform: scaleY(.5);}
+.b-t::before{top: 0;left: 0;}
+.b-b::before{bottom: 0;left: 0;}
+// 垂直线
+.custom-line{display: inline-block; width: 1px;height: 20px;margin: 0 10px;background-color: #DCDCDC;transform: scaleX(.5);}
 
 // 列表样式
 .box{
