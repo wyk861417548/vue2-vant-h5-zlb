@@ -44,9 +44,14 @@ export function scanZLB(type){
 
 // 浙里办拨打电话
 export function call(phone){
-  ZWJSBridge.phoneCall({
-    corpId:phone
-  });
+  if(window.ZWJSBridge){
+    ZWJSBridge.phoneCall({
+      corpId:phone
+    });
+  }else{
+    window.location.href = `tel:${phone}`
+  }
+  
 }
 
 // 0:普通 1:微信 2:支付宝 3:浙里办 4：微信端浙里办  5:支付宝浙里办

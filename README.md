@@ -11,6 +11,23 @@ node 14.15.1
 yarn 1.22.10
 ```
 
+## 
+```
+接口请求设置后端返回设置 cache-control: no-cache, no-store, max-age=0, must-revalidate
+// ios从公众号页面返回不请求接口处理
+ios(){
+  var u = navigator.userAgent;
+  var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+  if(isiOS){
+    window.onpageshow =(event)=>{
+      if (event.persisted || window.performance && window.performance.navigation.type == 2) {
+        //接口请求
+      }
+    };
+  }
+}
+```
+
 ## 目录结构
 ```
 ├── public                     # 静态资源

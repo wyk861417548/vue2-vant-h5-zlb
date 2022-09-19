@@ -7,6 +7,11 @@
       </section>
 
       <section class="box">
+        <h2 class="box-title">测试浙里办支付宝支付</h2>
+        <button class="el-button el-button-primary" @click="pay">支付</button>
+      </section>
+
+      <section class="box">
         <h2 class="box-title">测试支付宝或浙里办扫一扫</h2>
         <button class="el-button el-button-primary" @click="handleClick">扫一扫</button>
       </section>
@@ -60,6 +65,20 @@ export default {
     // 上传图片测试
     changeUpload(){
 
+    },
+
+    pay(){
+      ZWJSBridge.pay({
+        platform:'1' ,
+        arg:{
+          "credential":"待⽀付的订单信息",
+          "inSandBox": false
+        }
+      }).then((result) => {
+        console.log(1,result);
+      }).catch((error) => {
+        console.log(2,error);
+      });
     },
 
     changeDatetimePicker(date){

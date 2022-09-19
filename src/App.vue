@@ -17,6 +17,9 @@ export default{
     ZWJSBridge.onReady(() => {console.log('初始化完成后，执⾏bridge⽅法')})
 
     window.addEventListener('beforeunload',this.beforeunloadFn);
+    
+    // 用于线上打开调试工具
+    sessionStorage.__CONSOLE__ = this.$config.getParams() && this.$config.getParams().console;
   },
 
   methods:{

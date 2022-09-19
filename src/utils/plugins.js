@@ -10,7 +10,7 @@ Vue.use(Vant);
 import "@/static/js/index.js";
 
 import Vconsole from 'vconsole'
-if (process.env.NODE_ENV == 'dev') {
+if (process.env.VUE_APP_MODE != 'production' || sessionStorage.__CONSOLE__ == 'true') {
   let vConsole = new Vconsole()
   Vue.use(vConsole)
 }
