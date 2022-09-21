@@ -13,12 +13,9 @@ export default {
     return {
       dataList:[],
 
-      count:1,
-
       data:{
         //列表初始页码
         current: 1,   
-
         //每页条数
         size:10,   
       },
@@ -32,9 +29,9 @@ export default {
   methods: {
     getData(){
       setTimeout(()=>{
-        this.count++;
+        this.data.current++;
         for (let i = 0; i < 10; i++) {
-          this.dataList.push({name:this.count+"---i---"+i,age:i})
+          this.dataList.push({name:this.data.current+"---i---"+i,age:i})
         }
 
         this.$isScroll(this.$refs.scroll,this.dataList,30)
@@ -47,7 +44,8 @@ export default {
   .list {
     margin-top: 20px;
     height: 100px;
-    background: linear-gradient(to right,#bdc3c7,#2c3e50);
+    color: #fff;
+    background: linear-gradient(to right,#ff6700,#f33);
     line-height: 100px;
     text-align: center;
   }

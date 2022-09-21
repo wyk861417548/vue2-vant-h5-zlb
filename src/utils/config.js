@@ -27,8 +27,7 @@ export default {
       alipayh5: userAgent.indexOf('alipay') > -1 && userAgent.indexOf('miniprogram') === -1,
   
       // 支付宝小程序
-      alipayminiprogram:
-        userAgent.indexOf('miniprogram') > -1 && userAgent.indexOf('alipay') > -1,
+      alipayminiprogram:userAgent.indexOf('miniprogram') > -1 && userAgent.indexOf('alipay') > -1,
   
       // 微信
       wx: userAgent.indexOf('micromessenger') > -1,
@@ -60,7 +59,7 @@ export default {
     let u =window.navigator.userAgent;
     var isAndroid  = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1 ;
     
-    console.log('isAndroid',isAndroid);
+    // 安卓免费的没有了 有道只能准确的播放英语  使用百度的免费有额度
     if(isAndroid){
       let audio = new Audio(`https://dict.youdao.com/dictvoice?audio=${text}&type=1`)
       audio.pause();
@@ -68,6 +67,7 @@ export default {
       return;
     }
     
+    // ios 自带
     speechSynthesis.cancel();
     const speech = new window.SpeechSynthesisUtterance();
     speech.text = text;

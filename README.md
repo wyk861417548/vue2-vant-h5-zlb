@@ -76,7 +76,7 @@ ios(){
 ├── postcss.config.js          # postcss 配置
 └── vue.config.js              # vue-cli 配置
 ```
-## 1.懒加载图片组件使用
+## 1.懒加载图片组件使用（$config.LazyloadImg(图片地址)）
 ```
 <section v-for="(item,index) in imgList" :key="index">
   <img v-lazy="item.img" alt="" style="width:200px;height:200px;">
@@ -86,22 +86,9 @@ imgList:[
   {name:"1",menuId:'1',img:require('@/static/images/nodata.png')},
   {name:"2",menuId:'10013',img:require('@/static/images/nodata.png')},
 ]
-
-// v-lazy 单独配置 自定义加载以及错误图片
-computed:{
-  LazyloadImg(){
-    return (img)=>{
-      return {
-        src: img,
-        error: require('@/assets/images/health.png'),
-        loading: require('@/assets/images/health.png'),
-      }
-    }
-  }
-},
 ```
 
-## 2.原生scroll（单页面无切换）如果有切换请看示例
+## 2.原生scroll（单页面无切换），如果有切换请看示例/example/list（新建中间页来处理缓存问题）
 ```
 <Scroll ref="scroll" @scroll="getData">
   <div class="list"  v-for='(item,index) in dataList' :key='index'>
@@ -119,8 +106,6 @@ export default {
 
       dataList:[],
 
-      count:1,
-
       data:{
         //列表初始页码
         current: 1,   
@@ -135,10 +120,11 @@ export default {
     // 如果不是从详情页进入  重新加载
     if(!this.$route.meta.isBack){
       this.dataList = [];
-      this.count = 1;
+      this.data.current = 1;
       this.$refs.scroll.status =3;
       this.getData();
     }else if(!this.init){
+      //保证页面在刷新后也能够再次请求
       this.init = true;
     }
   },
@@ -146,9 +132,9 @@ export default {
   methods: {
     getData(){
       setTimeout(()=>{
-        this.count++;
+        this.data.current++;
         for (let i = 0; i < 10; i++) {
-          this.dataList.push({name:this.count+"---i---"+i,age:i})
+          this.dataList.push({name:this.data.current+"---i---"+i,age:i})
         }
 
         this.$isScroll(this.$refs.scroll,this.dataList,30)

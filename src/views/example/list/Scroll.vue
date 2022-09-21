@@ -42,16 +42,15 @@ export default {
   methods: {
     initData(){
       this.dataList = [];
-      this.count = 1;
+      this.data.current = 1;
       this.$refs.scroll.status =3;
-      console.log('458464646');
       this.getData();
     },
     getData(){
       setTimeout(()=>{
-        this.count++;
+        this.data.current++;
         for (let i = 0; i < 10; i++) {
-          this.dataList.push({name:this.count+"---i---"+i,age:i})
+          this.dataList.push({name:this.data.current+"---i---"+i,age:i})
         }
         
         this.$isScroll(this.$refs.scroll,this.dataList,30)
@@ -64,7 +63,8 @@ export default {
   .list {
     margin-top: 20px;
     height: 100px;
-    background: linear-gradient(to right,#bdc3c7,#2c3e50);
+    color: #fff;
+    background: linear-gradient(to right,#ff6700,#f33);
     line-height: 100px;
     text-align: center;
   }
