@@ -13,7 +13,11 @@ export default{
     // 0:普通 1:微信 2:支付宝 3:浙里办 4：微信端浙里办  5:支付宝浙里办
     const brower = this.$config.checkBrowser();
   
-    this.asnyLoadJs(brower)
+    if([3,4,5].includes(brower)){
+      this.initZWJSBridge(brower);
+    }else{
+      this.init = true;
+    }
 
     // 将游览器环境存入vuex
     this.$store.commit('setBrower',brower);
@@ -21,38 +25,46 @@ export default{
     window.addEventListener('beforeunload',this.beforeunloadFn);
 
     // 用于线上打开调试工具
-    sessionStorage.__CONSOLE__ = this.$config.getParams() && this.$config.getParams().console;
+    sessionStorage.__CONSOLE__ = this.$config.getParams() && this.$config.getParams().vconsole;
   },
 
   methods:{
-    asnyLoadJs(brower){
-      if([3,4].includes(brower)){
-        this.loadZLBJS(brower);
-      }else{
-        this.init = true;
-      }
-    },
-
-    // 浙里办js异步加载
-    loadZLBJS(brower){
-      var loadScript = [
-        'https://jssdk.yyhj.zjzwfw.gov.cn/jsbridge/v2.0.0/bridge.min.js',
-        'https://assets.zjzwfw.gov.cn/assets/ZWJSBridge/1.1.0/zwjsbridge.js',
-      ]
-      // 微信浙里办埋点js
-      if(brower == 4){
-        loadScript.push('https://assets.zjzwfw.gov.cn/assets/zwlog/1.0.0/zwlog.js')
-      }
-      this.$config.loadScriptAll(loadScript,()=>{
-        ZWJSBridge.onReady(() => {console.log('初始化完成后，执⾏bridge⽅法')})
+    initZWJSBridge(brower){
+      ZWJSBridge.onReady(() => {
+        console.log('初始化完成后，执行bridge方法');
         if(window.ZWJSBridge && ZWJSBridge.setTitle){
-          ZWJSBridge.setTitle({title:"模板"})
+          ZWJSBridge.setTitle({title:"安心善"})
+          this.judgeUiStyle();
+          this.init = true;
         }
-        this.init = true;
       })
-
+      if(brower == 4){
+        const uiStyle =  this.$config.getParams() && this.$config.getParams()._uiStyle
+        this.setUiStyle(uiStyle);
+        return;
+      }
     },
 
+    // 判断浙里办当前 UI 风格
+    judgeUiStyle() {
+      ZWJSBridge.getUiStyle({}).then((result) => { 
+        console.log('result',result);
+        this.setUiStyle(result.uiStyle);
+      }).catch((error) => {
+        console.log(error); 
+      })
+    },
+
+    // 设置适老化
+    setUiStyle(uiStyle){
+      if(uiStyle == 'normal'){  
+        this.$store.commit('updateLocalData',{uiStyle:'normal'})
+        document.documentElement.style.fontSize = (window.innerWidth/10) +'px';
+      }else{
+        this.$store.commit('updateLocalData',{uiStyle:'elder'})
+        document.documentElement.style.fontSize = (window.innerWidth/10*1.3) +'px';
+      }
+    },
     // 页面刷新调用  防止vuex丢失
     beforeunloadFn(){
       this.$store.commit('updateState');
