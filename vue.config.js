@@ -18,7 +18,8 @@ module.exports = {
       }
     },
   },
-  productionSourceMap:process.env.NODE_ENV==='production'?false:true,
+  // productionSourceMap:process.env.NODE_ENV==='production'?false:true,
+  productionSourceMap:false,
 
   // 配置全局通用自定义less变量
   pluginOptions: {

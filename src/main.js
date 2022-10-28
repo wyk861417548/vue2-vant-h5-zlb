@@ -28,9 +28,14 @@ Vue.prototype.$validator = validator;
  *   url地址
  *   params 传参
  * */
-Vue.prototype.$skip = (url,params)=>{
+ Vue.prototype.$skip = (url,params)=>{
   if(!url)return;
   app.$router.push({path:url,query:params});
+}
+
+Vue.prototype.$replace = (url,params)=>{
+  if(!url)return;
+  app.$router.replace({path:url,query:params});
 }
 
 

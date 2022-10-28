@@ -45,7 +45,7 @@ figure{margin:0; padding:0;}
 7. ::-webkit-resizer 两个滚动条的交汇处上用于拖动调整元素大小的小控件
 */
 /* 滚动条样式设置 */
-::-webkit-scrollbar {width:0px;height:0px;}
+/* ::-webkit-scrollbar {width:0px;height:0px;} */
 
 /* 页面背景色 */
 .page-bg{background-color: #f1f1f1;}
