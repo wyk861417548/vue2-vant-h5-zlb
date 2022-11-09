@@ -1,5 +1,4 @@
 <template>
-  <!-- j-full-curbox 当前元素占满全屏  j-flex-col flex垂直布局 -->
   <div>
     <!-- 设置一些自定义 -->
     <slot name="title" v-bind="{val:uploadList.length}"></slot>

@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="page-bg">
+  <div id="app" class="page-bg" v-if="init">
     <keep-alive>
       <router-view v-if="$route.meta.keepAlive"></router-view>
     </keep-alive>
@@ -9,10 +9,14 @@
 
 <script>
 export default{
+  data(){
+    return {
+      init:false
+    }
+  },
   created(){
     // 0:普通 1:微信 2:支付宝 3:浙里办 4：微信端浙里办  5:支付宝浙里办
     const brower = this.$config.checkBrowser();
-  
     if([3,4,5].includes(brower)){
       this.initZWJSBridge(brower);
     }else{

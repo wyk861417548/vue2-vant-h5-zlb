@@ -5,7 +5,10 @@ Vue.use(Vuex)
 const localDataKey = 'localDataKey'
 
 let state = {
-  token:''
+  // 本地持久化放这里
+  storage:{
+    token:''
+  }
 }
 
 
@@ -18,6 +21,8 @@ let initState = function(){
     }
     sessionStorage[localDataKey] = '';
   }
+
+  state.storage = localStorage.storage;
 	return state;
 }
 
@@ -38,6 +43,7 @@ const store = new Vuex.Store({
     
     setToken(state,data){
       state.token = data;
+      localStorage.storage = state.storage
     },
 
     // 设置游览器环境全局使用

@@ -53,6 +53,28 @@ export default {
   
     return userFrom
   },
+
+  /**
+   * 数据脱敏显示
+   * str 脱敏字符串
+   * start 开始位置留字符数量
+   * end 结束位置留字符数量
+   * fixflag 脱敏显示字符
+   */
+   StringTakeoff:function (str, start, end, fixflag = '*') {
+    const fixStr = []
+    const endPoint = str.length - end
+  
+    for (let i = 0; i < str.length; i++) {
+      if (i < start || (i >= endPoint && str.length > 2)) {
+        fixStr.push(str[i])
+      } else {
+        fixStr.push(fixflag)
+      }
+    }
+  
+    return fixStr.join('')
+  },
   
   // 语音播报
   reader(text){
@@ -121,18 +143,33 @@ export default {
     return str;
   },
 
-  /**
-   * @param {*} num 需要转换金额
+  // /**小数四舍五入
+  //  * @param {*} num 需要转换金额
+  //  * @param {*} type 0：元  1：万元  2:亿元 以此类推
+  //  * @param {*} fixed 保留小数位数
+  //  * @returns 
+  //  */
+  // unitConvert:function(num,type=1,fixed=2) {
+  //   var dividend = Math.pow(10000,type)
+  //   var curNum = num;
+  //   //转换金额位数
+  //   curNum = curNum / dividend 
+  //   return curNum.toFixed(fixed);
+  // },
+
+  /**小数不四舍五入
+   * @param {*} num 需要转换金
    * @param {*} type 0：元  1：万元  2:亿元 以此类推
-   * @param {*} fixed 保留小数
+   * @param {*} fixed 保留小数位数
    * @returns 
    */
-  unitConvert:function(num,type=1,fixed=2) {
+   unitConvert(num,type=1,fixed=2) {
     var dividend = Math.pow(10000,type)
     var curNum = num;
     //转换金额位数
     curNum = curNum / dividend 
-    return curNum.toFixed(fixed);
+    let curNumArr = (curNum+'').split('.');
+    return curNumArr[0] +'.'+ (curNumArr[1]*0.01+'').slice(0,fixed);
   },
   
   /**

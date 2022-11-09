@@ -28,7 +28,7 @@
 
       <section class="box">
         <h2 class="box-title">二维码组件</h2>
-        <Qrcode class="qrcode" code='二维码组件' color="#108ee9"></Qrcode>
+        <Qrcode class="qrcode" code='我是二维码组件' color="#108ee9"></Qrcode>
       </section>
 
       <section class="box">

@@ -1,36 +1,56 @@
 <template>
-  <div id="qrCode" ref="qrCodeDiv"></div>
+  <div id="qrCode" ref="qrCodeDiv" @click="$ImagePreview([img])"></div>
 </template>
 
 <script>
 import QRCode from 'qrcodejs2';
 export default {
-  props: ["code", "color"],
+  props:{
+    // 二维码内容
+    code:{
+      type:String,
+      default:'无'
+    },
 
-  data() {
-    return {
-      qrcode: "",
+    // 二维码颜色
+    color:{
+      type:String,
+      default:'#333'
+    },
 
-      text: "Qrcode"
-    };
+    // 是否开启点击二维码预览
+    preview:{
+      type:Boolean,
+      default:true
+    }
+  },
+
+  data(){
+    return{
+      img:''
+    }
   },
 
   mounted() {
     this.setCode();
   },
 
-
   methods: {
     setCode() {
-      this.qrcode = new QRCode(this.$refs.qrCodeDiv, {
-        text: this.code || this.text,
-        width: 1080,
-        height: 1080,
-        colorDark: this.color || "#333333", //二维码颜色
-        colorLight: "#ffffff", //二维码背景色
+      new QRCode(this.$refs.qrCodeDiv, {
+        text: this.code,
+        width: 1080, //防止分辨率大的时候模糊
+        height: 1080, //防止分辨率大的时候模糊
+        colorDark: this.color, //二维码颜色
+        colorLight: "#fff", //二维码背景色
         correctLevel: QRCode.CorrectLevel.L//容错率，L/M/H
       })
+
+      setTimeout(()=>{
+        this.img = this.$refs.qrCodeDiv.querySelector('img').src;
+      },0)
     },
+
 
     clearCode() {
       let code = document.getElementById("qrCode");
@@ -40,9 +60,7 @@ export default {
 
   watch: {
     // 不使用makeCode  是因为  不能再动态改变颜色
-    code(newVal) {
-      this.text = newVal;
-      // this.qrcode.makeCode(newVal);
+    code() {
       this.clearCode();
       this.$nextTick(function () {
         this.setCode();

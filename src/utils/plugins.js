@@ -9,11 +9,18 @@ Vue.use(Vant);
 // 全局公共组件
 import "@/static/js/index.js";
 
+// 图片预览
+import { ImagePreview } from 'vant';
+Vue.prototype.$ImagePreview = ImagePreview;
+
+
 import Vconsole from 'vconsole'
-if (process.env.VUE_APP_MODE != 'production' || sessionStorage.__CONSOLE__ == 'true') {
-  let vConsole = new Vconsole()
-  Vue.use(vConsole)
-}
+setTimeout(()=>{
+  if (process.env.VUE_APP_MODE != 'production' || sessionStorage.__CONSOLE__ == 'true') {
+    let vConsole = new Vconsole()
+    Vue.use(vConsole)
+  }
+},0)
 
 
 // 图片懒加载
@@ -26,11 +33,11 @@ Vue.use(Lazyload, {
   attempt: 1,
 });
 
-// 禁用页面滚动
+// 禁用页面滚动 * { touch-action: pan-y; }  使用这个控制台解决报错
 Vue.prototype.$banScroll = ()=>{
   const mo = function(e){e.preventDefault()};
   document.body.style.overflow='hidden';
-  document.addEventListener("touchmove",mo,{passive:false});//禁止页面滑动
+  document.addEventListener("touchmove",mo,false);//禁止页面滑动
 }
 // 取消页面滚动限制
 Vue.prototype.$canScroll = ()=>{

@@ -28,6 +28,8 @@ i{margin-right:2px ;}
 
 /* 隐藏高德地图标识 */
 .amap-logo,.amap-copyright{display: none !important;}
+/* 用于解决禁用页面滚动事件，页面取消事件后页面还是不能滚动 */
+*{ touch-action: pan-y;}
 
 /* h5 清除样式 */
 figure{margin:0; padding:0;}
@@ -45,7 +47,7 @@ figure{margin:0; padding:0;}
 7. ::-webkit-resizer 两个滚动条的交汇处上用于拖动调整元素大小的小控件
 */
 /* 滚动条样式设置 */
-/* ::-webkit-scrollbar {width:0px;height:0px;} */
+::-webkit-scrollbar {width:0px;height:0px;}
 
 /* 页面背景色 */
 .page-bg{background-color: #f1f1f1;}
