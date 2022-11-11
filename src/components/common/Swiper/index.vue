@@ -9,7 +9,7 @@
   >
     <slot>
       <swiper-slide>
-        <img style="display:block;" width="100%" src="@/static/images/lazy/default_banner.png" alt="">
+        <img style="display:block;" width="100%" src="@/assets/images/lazy/default_banner.png" alt="">
       </swiper-slide>
     </slot>
     <div class="swiper-pagination" slot="pagination"></div>
@@ -100,7 +100,6 @@ export default {
     },
   },
 
-  mounted() {},
   watch: {
     option: {
       handler(newVal) {

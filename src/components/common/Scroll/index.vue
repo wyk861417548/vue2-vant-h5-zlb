@@ -5,7 +5,7 @@
 
     <div v-show="status==1" class="j-full-curbox">
       <div class="j-full-center" style="top:40%;text-align:center;">
-        <img src="@/static/images/nodata.png" alt="图片">
+        <img src="@/assets/images/error/nodata.png" alt="图片">
         <div style="color:#5A5B5C;">暂无数据</div>
       </div>
     </div>
@@ -42,9 +42,6 @@ export default {
     
   },
 
-  mounted(){
-  
-  },
   methods:{
     // 监听滚动  上拉加载默认状态 status 0：可加载 1：无数据 2已结束 3:加载中
     onScroll(e){

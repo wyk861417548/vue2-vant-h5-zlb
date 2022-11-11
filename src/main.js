@@ -4,7 +4,7 @@ import router from './router.js'
 import store from './store/index.js'
 import config from "@/utils/config.js";
 import api from "@/utils/api.js";
-import validator from "@/static/js/validator.js";
+import validator from "@/utils/validator.js";
 import 'lib-flexible/flexible'
 // 适老化使用这个
 // import windowflex from '@/utils/flexible'
@@ -19,7 +19,6 @@ Vue.prototype.$config = config;
 
 // 接口文件
 Vue.prototype.$api = api;
-
 Vue.prototype.$validator = validator;
 
 

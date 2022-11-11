@@ -20,12 +20,12 @@ export default {
   data () {
     return {
       imgList:[
-        {name:"1",menuId:'1',img:require('@/static/images/nodata.png')},
-        {name:"2",menuId:'10013',img:require('@/static/images/nodata.png')},
+        {name:"1",menuId:'1',img:require('@/assets/images/error/nodata.png')},
+        {name:"2",menuId:'10013',img:require('@/assets/images/error/nodata.png')},
       ],
 
       bgList:[
-        {name:"1",menuId:'10',img:require('@/static/images/nodata.png')}
+        {name:"1",menuId:'10',img:require('@/assets/images/error/nodata.png')}
       ]
     };
   },

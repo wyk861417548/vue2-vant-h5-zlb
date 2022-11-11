@@ -2,7 +2,7 @@
 export function LazyloadImg(img){
   return {
     src: img,
-    error: require('@/static/images/lazy/default_banner.png'),
-    loading: require('@/static/images/lazy/default_banner.png'),
+    error: require('@/assets/images/lazy/default_banner.png'),
+    loading: require('@/assets/images/lazy/default_banner.png'),
   }
 }

@@ -13,7 +13,6 @@ const router =  new Router({
     {path: '/example/list/detail',component: () => import('@/views/example/list/detail.vue'),meta:{title:"滚动详情",isBack:true}},
     {path: '/example/v-lazy',component: () => import('@/views/example/v-lazy.vue')},
     {path: '/example/swiper',component: () => import('@/views/example/swiper.vue')},
-    {path: '/example/preview',component: () => import('@/views/example/preview.vue')}
   ]
 })
 

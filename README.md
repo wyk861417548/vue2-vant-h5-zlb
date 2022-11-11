@@ -83,8 +83,8 @@ ios(){
 </section>
 
 imgList:[
-  {name:"1",menuId:'1',img:require('@/static/images/nodata.png')},
-  {name:"2",menuId:'10013',img:require('@/static/images/nodata.png')},
+  {name:"1",menuId:'1',img:require('@/assets/images/error/nodata.png')},
+  {name:"2",menuId:'10013',img:require('@/assets/images/error/nodata.png')},
 ]
 ```
 
@@ -177,11 +177,12 @@ methods:{
 
 ## 4.Qrcode 二维码
 ```
-<Qrcode code='二维码组件' color="#ff3"></Qrcode>
+<Qrcode code='二维码组件'></Qrcode>
 ```
 ### Props
 | 参数 | 说明                                         | 类型   | 默认值 |
 | :--- | -------------------------------------------- | :----- | :----- |
-| code  | 二维码值                                 | String | Qrcode      |
-| color | 二维码颜色 | String | |
+| code  | 二维码值                                 | String |  无  |
+| color | 二维码颜色 | String | #333 |
+| preview | 是否开启二维码点击预览（基于vant） | Boolean | true |
 

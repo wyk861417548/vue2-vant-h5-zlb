@@ -7,7 +7,7 @@ Vue.use(Vant);
 
 
 // 全局公共组件
-import "@/static/js/index.js";
+import "@/assets/js/index.js";
 
 // 图片预览
 import { ImagePreview } from 'vant';
@@ -27,8 +27,8 @@ setTimeout(()=>{
 import { Lazyload } from 'vant';
 Vue.use(Lazyload, {
   lazyComponent: true,
-  error: require('@/static/images/lazy/error.png'),
-  loading: require('@/static/images/lazy/default.png'),
+  error: require('@/assets/images/lazy/error.png'),
+  loading: require('@/assets/images/lazy/default.png'),
   preLoad: 1,
   attempt: 1,
 });

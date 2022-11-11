@@ -1,4 +1,4 @@
-import {request} from "@/static/js/request.js";
+import {request} from "@/assets/js/request.js";
 export default {
   common:{
     // 上传组件

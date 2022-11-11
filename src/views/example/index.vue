@@ -38,12 +38,6 @@
       </section>
 
       <section class="box">
-        <h2 class="box-title">文件预览</h2>
-        <button class="el-button el-button-primary mr-20" @click="Jump('docx')">docx</button>
-        <button class="el-button el-button-primary" @click="Jump('pdf')">pdf</button>
-      </section>
-
-      <section class="box">
         <button class="el-button el-button-primary" @click="$refs.DatetimePicker.show = true">显示日期</button>
         <DatetimePicker type='year-month' ref="DatetimePicker" format="yyyy-MM" @change="changeDatetimePicker"></DatetimePicker>
       </section>
@@ -71,16 +65,6 @@ export default {
     // 上传图片测试
     changeUpload(){
 
-    },
-
-    // 新增
-    Jump(type){
-      let file = 'https://img.cdn.vihost.cn/vue_cli/zhubb/template_file/供应商合作框架协议.docx';
-      if(type == 'pdf'){
-        file = 'https://img.cdn.vihost.cn/pro/tem/testcharities/images/pdf/2022/09/14/16631462212859282.pdf'
-      }
-
-      this.$router.push({path:'/example/preview',query:{file}})
     },
 
     pay(){

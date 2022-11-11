@@ -78,5 +78,5 @@ export default{
 </script>
 
 <style lang="less">
-@import url('~@/static/css/common.css');
+@import url('~@/assets/css/common.css');
 </style>
