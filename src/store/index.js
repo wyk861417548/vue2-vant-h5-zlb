@@ -21,9 +21,22 @@ let initState = function(){
     }
     sessionStorage[localDataKey] = '';
   }
-
-  state.storage = localStorage.storage;
+  updateLocalStorage(false)
 	return state;
+}
+
+// 更新数据到本地 boolean:true  从vuex更新到本地  false:从本地更新到vuex
+let updateLocalStorage = function(boolean=true){
+  if(boolean){
+    for (const key in state.storage) {
+      localStorage[key] = state.storage[key];
+    }
+  }else{
+    for (const key in state.storage) {
+      state.storage[key] = localStorage[key];
+    }
+  }
+  
 }
 
 //存储状态数据到本地sessionStorage 用于保证vuex刷新不丢失
@@ -36,14 +49,14 @@ const store = new Vuex.Store({
   state:initState(),
 
   mutations: {
-    // 更新数据到saveState
+    // 更新数据到sessionStorage
     updateState(state){
       saveState(state);
     },
     
     setToken(state,data){
       state.token = data;
-      localStorage.storage = state.storage
+      updateLocalStorage();
     },
 
     // 设置游览器环境全局使用
