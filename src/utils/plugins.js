@@ -6,8 +6,8 @@ import 'vant/lib/index.css';
 Vue.use(Vant);
 
 
-// 全局公共组件
-import "@/assets/js/index.js";
+// 自动注册全局公共组件
+import "@/utils/automatic.js";
 
 // 图片预览
 import { ImagePreview } from 'vant';

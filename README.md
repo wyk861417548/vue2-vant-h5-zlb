@@ -33,23 +33,14 @@ ios(){
 ├── public                     # 静态资源
 │   └── index.html             # html模板
 ├── src                        # 源代码
-│   ├──static                  # 图片、字体等静态资源 (存放不会变动的文件，不会被webpack处理)
+│   ├──static                  # 图片、字体等第三方静态资源 (存放不会变动的文件，不会被webpack处理)
         ├──css                 # css
         ├──images              # 图片
-        ├──js                  # 公共js
-            ├──config（文件夹） # 公共方法拆分的js文件
-              ├──idCard        # 身份证处理相关
-              ├──kCompass      # 图片压缩
-              ├──loading       # 全局动画加载
-              ├──url           # 地址栏处理相关
-              ├──zlb           # 浙里办支付宝相关
-            ├──index           # 全局主动注册公共组件
-            ├──config          # 公共方法
-            ├──request         # 公共请求封装
-            ├──validator       # 提交校验
+        ├──js                  # js
     ├──assets                  # 图片、字体等资源  （存放会变动的文件，会被webpack处理）
         ├──images              # 图片
         ├──less                # 自定义全局less
+        ├──css                 # 自全局css
     ├── mixins                 # 代码混入
         ├──keepAlive           # 页面缓存
 │   ├── components             # 全局公用组件
@@ -58,12 +49,21 @@ ios(){
         ├──qrcode              # 生产二维码
         ├──swiper              # 轮播图
         ├──upload              # 上传图片
-        ├──webSocket           # webSocket链接
 │   ├── router                 # 路由
 │   ├── store                  # 全局store管理
 │   ├── utils                  # 全局公用方法
-        ├── api                # 请求接口配置
-        ├── plugins            # 插件引入
+        ├──config（文件夹）     # 公共方法拆分的js文件
+          ├──idCard            # 身份证处理相关
+          ├──kCompass          # 图片压缩
+          ├──loading           # 全局动画加载
+          ├──url               # 地址栏处理相关
+          ├──zlb               # 浙里办支付宝相关
+        ├──config              # 公共方法
+        ├──request             # 公共请求封装
+        ├──validator           # 提交校验
+        ├──api                 # 请求接口配置
+        ├──automatic           # 全局主动注册公共组件
+        ├──plugins             # 插件引入(或者各种挂载vue原型配置等等)
 │   ├── views                  # views所有页面
 │   ├── App.vue                # 入口页面
 │   ├── main.js                # 入口文件 加载组件 初始化等
