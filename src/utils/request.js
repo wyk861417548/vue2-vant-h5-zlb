@@ -24,11 +24,9 @@ var count = 0;
 // 请求拦截器
 service.interceptors.request.use(
   config => {
-    loading(true);
     return config;
   },
   error => {
-    loading(true);
     return Promise.error(error);
   }
 )
@@ -62,9 +60,16 @@ service.interceptors.response.use(res => {
  * @param {*} params 
  * @param {Object} params.opt 用于自定义处理配置 
  * @param {Object} opt.back true 表示无论code为多少，都会返回不会进入统一错误处理
+ * @param {Object} opt.loading false 表示当前接口不使用全局自定义加载动画
  * @returns 
  */
 export function request(params){
+  if(!params.opt || (params.opt && params.opt.loading != false)){
+    loading(true);
+  }else{
+    ++count
+  }
+
   return new Promise((resolve,reject) => {
     service(params).then(res=>{
       return requestHandle(res,params.opt,resolve,reject);

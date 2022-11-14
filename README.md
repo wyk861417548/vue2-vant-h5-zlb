@@ -117,19 +117,20 @@ export default {
   },
 
   activated(){
-    // 如果不是从详情页进入  重新加载
-    if(!this.$route.meta.isBack){
-      this.dataList = [];
-      this.data.current = 1;
-      this.$refs.scroll.status =3;
-      this.getData();
-    }else if(!this.init){
-      //保证页面在刷新后也能够再次请求
+    // 如果不是从详情页进入 init为了解决在详情页面刷新，导致数据不在加载问题
+    if(!this.$route.meta.isBack || !this.init){
       this.init = true;
+      this.initData();
     }
   },
 
   methods: {
+    initData(){
+      this.dataList = [];
+      this.data.current = 1;
+      this.$refs.scroll.status =3;
+      this.getData();
+    },
     getData(){
       setTimeout(()=>{
         this.data.current++;

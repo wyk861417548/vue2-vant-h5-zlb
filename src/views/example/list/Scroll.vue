@@ -30,10 +30,8 @@ export default {
   },
 
   activated(){
-    // 如果不是从详情页进入 init 为了解决页面刷新导致数据重新加载问题
-    if(!this.$route.meta.isBack){
-      this.initData();
-    }else if(!this.init){
+    // 如果不是从详情页进入 init为了解决在详情页面刷新，导致数据不在加载问题
+    if(!this.$route.meta.isBack || !this.init){
       this.init = true;
       this.initData();
     }
