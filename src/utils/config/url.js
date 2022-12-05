@@ -4,11 +4,7 @@
  */
  export function getParams(search) {
   var r = {}
-  if (search == undefined) {
-    search = window.location.href.split('?')[1];
-  } else {
-    search = search.split('?')[1];
-  }
+  search = search == undefined?window.location.href.split('?')[1]:search.split('?')[1];
   if (!search) return;
 
   // 解决参数拼在hash前面问题

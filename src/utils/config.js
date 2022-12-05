@@ -1,58 +1,14 @@
-import * as $loading from "./config/loading";
-import * as $kCompass from "./config/kCompass";
-import * as $idCard from "./config/idCard";
-import * as $url from "./config/url";
-import * as $zlb from "./config/zlb";
-import * as $LazyloadImg from './config/LazyloadImg'
-import * as $load from './config/load'
+let _CONFIG_ = {};
+// 获取js路径集合
+const requireComponent = require.context('@/utils/config', true, /\.(js)$/)
+// 遍历得到js路径
+requireComponent.keys().forEach(fileName => {
+  const componentConfig = requireComponent(fileName);
+  _CONFIG_ = {...componentConfig,..._CONFIG_}
+})
 
 export default {
-  ...$loading,
-  ...$kCompass,
-  ...$idCard,
-  ...$url,
-  ...$zlb,
-  ...$LazyloadImg,
-  ...$load,
-
-  // 获取浏览器环境
-  kgetUseragent(){
-    const userAgent = window.navigator.userAgent.toLowerCase()
-  
-    const userFrom = {
-      // 支付宝
-      alipay: userAgent.indexOf('alipay') > -1,
-  
-      // 支付宝app内h5
-      alipayh5: userAgent.indexOf('alipay') > -1 && userAgent.indexOf('miniprogram') === -1,
-  
-      // 支付宝小程序
-      alipayminiprogram:userAgent.indexOf('miniprogram') > -1 && userAgent.indexOf('alipay') > -1,
-  
-      // 微信
-      wx: userAgent.indexOf('micromessenger') > -1,
-  
-      // 微信小程序
-      wxminiprogram: userAgent.indexOf('miniprogram') > -1 && userAgent.indexOf('micromessenger') > -1,
-  
-      // 浙里办App
-      zlb: userAgent.indexOf('dtdreamweb') > -1,
-  
-      // 浙里办支付宝小程序
-      zlbminiprogram: userAgent.indexOf('miniprogram') > -1 && userAgent.indexOf('alipay') > -1,
-  
-      // 是否为手机
-      isMobile: /android|iphone|symbianos|windows phone|ipad|ipod/.test(userAgent),
-  
-      // 是否为安卓
-      isAndroid: userAgent.indexOf('android') > -1 || userAgent.indexOf('adr') > -1,
-  
-      // 是否为ios
-      isIOS: /\(i[^;]+;( U;)? cpu.+mac os x/.test(userAgent)
-    }
-  
-    return userFrom
-  },
+  ..._CONFIG_,
 
   /**
    * 数据脱敏显示
@@ -143,20 +99,6 @@ export default {
     return str;
   },
 
-  // /**小数四舍五入
-  //  * @param {*} num 需要转换金额
-  //  * @param {*} type 0：元  1：万元  2:亿元 以此类推
-  //  * @param {*} fixed 保留小数位数
-  //  * @returns 
-  //  */
-  // unitConvert:function(num,type=1,fixed=2) {
-  //   var dividend = Math.pow(10000,type)
-  //   var curNum = num;
-  //   //转换金额位数
-  //   curNum = curNum / dividend 
-  //   return curNum.toFixed(fixed);
-  // },
-
   /**小数不四舍五入
    * @param {*} num 需要转换金
    * @param {*} type 0：元  1：万元  2:亿元 以此类推
@@ -170,6 +112,10 @@ export default {
     curNum = curNum / dividend 
     let curNumArr = (curNum+'').split('.');
     return curNumArr[0] +'.'+ (curNumArr[1]*0.01+'').slice(0,fixed);
+
+    // //转换金额位数 四舍五入
+    // curNum = curNum / dividend 
+    // return curNum.toFixed(fixed);
   },
   
   /**
@@ -179,11 +125,10 @@ export default {
    */
   distinct(arr,key) {
     var obj ={}
-    var arrCl = arr.reduce(function (item,next) {
+    return arr.reduce(function (item,next) {
       obj[next[key]]?"":obj[next[key]]=true&&item.push(next)
       return item;
     },[])
-    return arrCl;
   }
 }
 
