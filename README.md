@@ -43,6 +43,7 @@ ios(){
         ├──css                 # 自全局css
     ├── mixins                 # 代码混入
         ├──keepAlive           # 页面缓存
+        ├──suitable            # 浙里办适老化配置
 │   ├── components             # 全局公用组件
         ├──common              # 全局公共组件（“自动注册” 遵循一个文件夹里面定义index.vue格式，文件夹名称作为全局组件使用名称）
         ├──code                # 发送验证码倒计时
@@ -55,6 +56,7 @@ ios(){
         ├──config（文件夹）     # 公共方法拆分的js文件
           ├──idCard            # 身份证处理相关
           ├──kCompass          # 图片压缩
+          ├──LazyloadImg       # 图片懒加载（配置）
           ├──loading           # 全局动画加载
           ├──url               # 地址栏处理相关
           ├──zlb               # 浙里办支付宝相关
@@ -62,6 +64,7 @@ ios(){
         ├──request             # 公共请求封装
         ├──validator           # 提交校验
         ├──api                 # 请求接口配置
+        ├──login               # 各种登录支付配置
         ├──automatic           # 全局主动注册公共组件
         ├──plugins             # 插件引入(或者各种挂载vue原型配置等等)
 │   ├── views                  # views所有页面

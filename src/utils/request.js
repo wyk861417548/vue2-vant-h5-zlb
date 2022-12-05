@@ -64,10 +64,10 @@ service.interceptors.response.use(res => {
  * @returns 
  */
 export function request(params){
-  if(!params.opt || (params.opt && params.opt.loading != false)){
-    loading(true);
-  }else{
+  if(params.opt && params.opt.loading === false){
     ++count
+  }else{
+    loading(true);
   }
 
   return new Promise((resolve,reject) => {

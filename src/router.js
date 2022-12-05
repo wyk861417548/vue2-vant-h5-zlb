@@ -13,6 +13,10 @@ const router =  new Router({
     {path: '/example/list/detail',component: () => import('@/views/example/list/detail.vue'),meta:{title:"滚动详情",isBack:true}},
     {path: '/example/v-lazy',component: () => import('@/views/example/v-lazy.vue')},
     {path: '/example/swiper',component: () => import('@/views/example/swiper.vue')},
+
+    {path: '*',redirect:'/404'},
+    {path: '/403',component: () => import('@/views/error-page/403.vue'),meta: {title:"404" }},
+    {path: '/404',component: () => import('@/views/error-page/404.vue'),meta: {title:"404" }},
   ]
 })
 

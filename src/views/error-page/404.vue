@@ -1,9 +1,8 @@
 <template>
 	<div class="j-full-curbox" style="position:fixed;background-color: #fff;">
 		<div class="j-full-center" style="text-align: center;">
-			<img src="@/assets/images/error/403.png" alt="图片">
-			<div style="color:#5A5B5C;">暂无权限</div>
-
+			<img src="@/assets/images/error/404.png" alt="图片">
+			<div style="color:#5A5B5C;">页面不存在</div>
       <p class="el-button el-button-primary mt-20" style="width:80vw" @click="$router.go(-2)">返 回</p>
 		</div>
 	</div>
