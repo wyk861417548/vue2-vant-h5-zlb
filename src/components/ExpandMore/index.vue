@@ -1,22 +1,25 @@
 <template>
-  <div ref="expandMore" class="expandMore">
+  <div ref="expandMore" class="custom-expand">
     <main :style="styles(show)">
       <slot></slot>
     </main>
     
     <footer v-if="hidden">
-      <section class="more" v-show="show" @click="show = false">
-        <p>
-          <span>展示更多</span>
-          <van-icon name="arrow-down" />
+      <section class="custom-expand-more" v-show="show"  :style="{'height':height + 'px'}">
+        <p class="custom-expand-more-event" @click="show = false">
+          <slot name="down">
+            展示更多
+          </slot>
         </p>
       </section>
       
 
-      <p class="putAway" v-show="!show" @click="show = true">
-        收起
-        <van-icon name="arrow-up" />
-      </p>
+      <section class="custom-expand-up" v-show="!show">
+        <span @click="show = true">
+          <slot name="up">收起</slot>
+        </span>
+        
+      </section>
     </footer>
   </div>
 
@@ -63,9 +66,9 @@ export default {
 
 
   methods: {
+    // 获取当前内容高度
     getContent(){
       const aim = this.$refs.expandMore.getBoundingClientRect();
-
       if(this.height < aim.height){
         this.hidden = true;
         this.show = true;
@@ -74,28 +77,29 @@ export default {
 
     showExpandMore(){
       this.show = false;
-      console.log();
     }
   }
 }
 </script>
 <style lang='less' scoped>
-  .expandMore{
+  .custom-expand{
     position: relative;
-    .more{
+    main{
+      padding-top: 5px;
+    }
+    .custom-expand-more{
       position: absolute;
       width: 100%;
       bottom: 0;
       left: 0;
       color: #666;
-      height: 60px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.6) 0%, #FFFFFF 60%);
-      p{
+      background: linear-gradient(180deg, rgba(255,255,255,0.4) 0%, #FFFFFF 70%);
+      .custom-expand-more-event{
         position: absolute;
         bottom: 0;
       }
     }
-    .putAway{
+    .custom-expand-up{
       position: relative;
       text-align: center;
       color: #666;

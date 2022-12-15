@@ -15,7 +15,7 @@ const router =  new Router({
     {path: '/example/swiper',component: () => import('@/views/example/swiper.vue')},
 
     {path: '*',redirect:'/404'},
-    {path: '/403',component: () => import('@/views/error-page/403.vue'),meta: {title:"404" }},
+    {path: '/403',component: () => import('@/views/error-page/403.vue'),meta: {title:"403" }},
     {path: '/404',component: () => import('@/views/error-page/404.vue'),meta: {title:"404" }},
   ]
 })

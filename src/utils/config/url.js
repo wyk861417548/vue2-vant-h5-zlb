@@ -41,9 +41,8 @@ export function httprequestquery(list){
  * @param {*} boolen boolen 如果不存在或者为真就加密  boolen false解密
  * @returns 
  */
- export function httprequestencode(list,boolen){
+ export function httprequestencode(list,boolen=true){
   let params = [];
-  boolen?boolen:true;
   for(let i in list){
     let item =boolen?window.btoa(unescape(encodeURIComponent(list[i]))):decodeURIComponent(escape(window.atob(list[i])));
     params.push(i + "=" + item);

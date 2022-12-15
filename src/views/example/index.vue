@@ -1,43 +1,43 @@
 <template>
   <div >
     <!-- class="j-full-curbox" -->
-      <section class="box">
+      <section class="custom-box">
         <h2 class="box-title">测试上传图片压缩</h2>
         <upload path='fullUrl' :max='3' @change="changeUpload"></upload>
       </section>
 
-      <section class="box">
+      <section class="custom-box">
         <h2 class="box-title">测试浙里办支付宝支付</h2>
         <button class="el-button el-button-primary" @click="pay">支付</button>
       </section>
 
-      <section class="box">
+      <section class="custom-box">
         <h2 class="box-title">测试支付宝或浙里办扫一扫</h2>
         <button class="el-button el-button-primary" @click="handleClick">扫一扫</button>
       </section>
 
-      <section class="box">
+      <section class="custom-box">
         <h2 class="box-title">测试不是详情返回缓存页面，是否刷新</h2>
         <button class="el-button el-button-primary" @click="$skip('/example/Scroll')">scroll-单一</button>
       </section>
 
-      <section class="box">
+      <section class="custom-box">
         <h2 class="box-title">测试不是详情返回缓存页面，是否刷新</h2>
         <button class="el-button el-button-primary" @click="$skip('/example/list')">scroll-切换</button>
       </section>
 
-      <section class="box">
+      <section class="custom-box">
         <h2 class="box-title">二维码组件</h2>
         <Qrcode class="qrcode" code='我是二维码组件' color="#108ee9"></Qrcode>
       </section>
 
-      <section class="box">
+      <section class="custom-box">
         <h2 class="box-title">测试刷新页面vuex数据是否还是存在</h2>
         <p class="mb-5">vuex:{{$store.state.token}}</p>
         <button class="el-button el-button-primary" @click="reload">reload</button>
       </section>
 
-      <section class="box">
+      <section class="custom-box">
         <button class="el-button el-button-primary" @click="$refs.DatetimePicker.show = true">显示日期</button>
         <DatetimePicker type='year-month' ref="DatetimePicker" format="yyyy-MM" @change="changeDatetimePicker"></DatetimePicker>
       </section>
