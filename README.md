@@ -148,7 +148,50 @@ export default {
 }
 </script>
 ```
-## 3上传图片组件
+
+## 基于vant的上传组件
+```
+<!-- 自定义上传 -->
+<upload path='url' :limit='3' :defaultFileList="defaultFileList" @change="changeUpload" :customFile="customFile" :isCustom="true" @customUpLoad="customUpLoad"></upload>
+
+<!-- 简单使用 -->
+<upload @change="changeUpload"></upload>
+
+methods:{
+  // 自定义上传
+  customUpLoad(FormData){
+    // customFile 中 需要保证url属性存在
+    this.$api.common.upload(FormData).then(res=>{
+      this.customFile = res;
+    })
+  },
+
+  changeUpload({name,value}){
+    console.log(name,value)
+  },
+}
+
+```
+
+### Props
+
+| 参数 | 说明                                         | 类型   | 默认值 |
+| :--- | -------------------------------------------- | :----- | :----- |
+| limit  | *最大上传数*                                 | Number | 1      |
+| path | *上传接口返回图片字段* | String | url   |
+| name | *用于父组件接受已上传的图片名称*             | String | upload |
+| defaultFileList | *设置默认展示图片 注意：必须包含url值图片地址* *             | Boolean | false |
+| isCustom | *是否启用自定义上传*             | Boolean | false |
+| customFile | *自定义上传返回结果（搭配customUpLoad事件使用） 注意：必须包含url值图片地址*             | Object | {} |
+
+### Events
+
+| 事件名  | 说明     | 回调参数                  |
+| :------ | -------- | :------------------------ |
+| @change | 上传回调 | {name:String,value:Array} |
+| @customUpLoad | 自定义上传（上传图片的值） | new FormData |
+
+## 4自定义上传图片组件
 ```
 <upload :mode="false" path='fullUrl' :max='3' @change="changeUpload">
   //自定义icon

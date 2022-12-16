@@ -37,6 +37,17 @@ export default {
     },
 
     // 设置适老化 注意 不能直接搭配flexible npm包直接使用  修改源码解决输入框弹出后导致 重新rem适配)
+    // function refreshRem(){
+    //   var width = docEl.getBoundingClientRect().width;
+    //   if (width / dpr > 540) {
+    //       width = 540 * dpr;
+    //   }
+      
+    //   //适老化  解决输入框弹出后导致 重新rem适配)
+    //   var rem = width / ($vue.$store.state.storage.uiStyle == 'elder' ? 10/1.3 : 10);
+    //   docEl.style.fontSize = rem + 'px';
+    //   flexible.rem = win.rem = rem;
+    // }
     setUiStyle(uiStyle){
       if(uiStyle == 'normal'){  
         document.documentElement.style.fontSize = (window.innerWidth/10) +'px';

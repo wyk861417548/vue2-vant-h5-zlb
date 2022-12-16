@@ -14,21 +14,21 @@ const store = new Vuex.Store({
   state:$ST.initState(state),
 
   mutations: {
-    // 更新数据到sessionStorage
-    updateState(state){
-      $ST.saveState(state);
+    // 设置游览器环境全局使用
+    setBrower(state,data){
+      state.brower = data;
     },
-    
+
+    // 设置token，调用 updateLocalStorage 并将其在 localStorage 持久化存储
     setToken(state,data){
       state.token = data;
       $ST.updateLocalStorage(state);
     },
 
-    // 设置游览器环境全局使用
-    setBrower(state,data){
-      state.brower = data;
-    }
-
+    // 更新数据到sessionStorage 搭配 window.addEventListener('beforeunload') 监听页面刷新 保证vuex数据不丢失
+    updateState(state){
+      $ST.saveState(state);
+    },
   }
 })
 

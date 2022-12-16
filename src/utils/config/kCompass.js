@@ -11,47 +11,36 @@ export function kCompass(opt) {
   const result = { code: 200, msg: '', result: {} }
 
   return new Promise((resolve, reject) => {
-    // base64模式
+    
+    // // base64模式
     if (opt.base64) {
       const img = new Image()
 
       img.onload = ()=> {
-        result.result = kimageCompass(img, { width: width, height: height, quality: quality })
+        result.result = kimageCompass(img, { width, height, quality})
         resolve(result)
       }
 
       img.src = opt.base64
-      return false
+      return;
     }
 
     // 输入文件模式
     if (opt.fileinput) {
-      if (!opt.fileinput) {
+      // 代表不是文件对象
+      if (!opt.fileinput.name) {
         result.code = 400
         result.msg = '文件不存在'
 
         reject(result)
-        return false
+        return;
       }
 
-      // 检测文件格式
-      if (opt.acceptType && !opt.acceptType.test(opt.fileinput.name)) {
-        result.code = 400
-        result.msg = '图片格式不支持'
-
-        reject(result)
-        return false
-      }
-
-      kfilereader(opt.fileinput, { callbackType: 'image' })
-        .then((imgdata) => {
-          result.result = kimageCompass(
-            imgdata,
-            { width: width, height: height, quality: quality }
-          )
-
-          resolve(result)
-        })
+      // 读取文件流 获取base64值
+      kfilereader(opt.fileinput, { callbackType: 'image' }).then((imgdata) => {
+        result.result = kimageCompass(imgdata,{ width, height, quality })
+        resolve(result)
+      })
     }
   })
 }
@@ -68,7 +57,6 @@ export function dataURLtoFile(dataurl, filename) {
   while (n--) {
     u8arr[n] = bstr.charCodeAt(n)
   }
-
   return new File([u8arr], filename + '.' + mime.split('/')[1], { type: mime })
 }
 /**
@@ -123,6 +111,7 @@ function kfilereader(file, opt) {
       resolve(evt.target.result)
     }
 
+    // 即将被读取的 Blob 或 File 对象。
     filereader.readAsDataURL(file)
   })
 }

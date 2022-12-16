@@ -44,5 +44,5 @@ export function tip(val, col, bool) {
   document.body.appendChild(div);
   setTimeout(function () {
     document.body.removeChild(document.querySelector("#Y_tip"));
-  }, bool ? bool : 10000)
+  }, bool ? bool : 1500)
 }

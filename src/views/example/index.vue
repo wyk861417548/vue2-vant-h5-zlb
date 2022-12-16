@@ -2,8 +2,14 @@
   <div >
     <!-- class="j-full-curbox" -->
       <section class="custom-box">
-        <h2 class="box-title">测试上传图片压缩</h2>
-        <upload path='fullUrl' :max='3' @change="changeUpload"></upload>
+        <h2 class="box-title">测试上传图片压缩（基于vant组件）</h2>
+        <upload @change="changeUpload"></upload>
+        <!-- <upload path='url' :limit='3' :defaultFileList="defaultFileList" @change="changeUpload" :customFile="customFile" :isCustom="true" @customUpLoad="customUpLoad"></upload> -->
+      </section>
+
+      <section class="custom-box">
+        <h2 class="box-title">测试上传图片压缩（自定义）</h2>
+        <custom-upload path='url' :limit='3' @change="changeUpload"></custom-upload>
       </section>
 
       <section class="custom-box">
@@ -51,7 +57,28 @@
 export default {
   data () {
     return {
-      date:''
+      date:'',
+
+      defaultFileList:[
+          {
+              "msg": "操作成功",
+              "fileName": "/profile/upload/2022/12/16/1.png_20221216142827A039.jpeg",
+              "code": 200,
+              "newFileName": "1.png_20221216142827A039.jpeg",
+              "url": "http://192.168.0.187:8041/profile/upload/2022/12/16/1.png_20221216142827A039.jpeg",
+              "originalFilename": "1.png.jpeg"
+          },
+          {
+              "msg": "操作成功",
+              "fileName": "/profile/upload/2022/12/16/1.png_20221216142832A040.jpeg",
+              "code": 200,
+              "newFileName": "1.png_20221216142832A040.jpeg",
+              "url": "http://192.168.0.187:8041/profile/upload/2022/12/16/1.png_20221216142832A040.jpeg",
+              "originalFilename": "1.png.jpeg"
+          }
+      ],
+
+      customFile:{}
     };
   },
 
@@ -63,8 +90,17 @@ export default {
     },
 
     // 上传图片测试
-    changeUpload(){
+    changeUpload(data){
+      console.log('changeUpload',data);
+    },
 
+
+    customUpLoad(FormData){
+      // 需要保证url属性存在
+      this.$api.common.upload(FormData).then(res=>{
+        this.customFile = res;
+        console.log('this.customFile',this.customFile);
+      })
     },
 
     pay(){
