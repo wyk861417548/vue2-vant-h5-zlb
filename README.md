@@ -2,7 +2,7 @@
 
 此项目是基于vue-cli3.x构建的,基于vant框架的h5模板。
 ## 技术栈
-vue2 + vuex + vue-router +  + ES6/7 + sass + vant
+vue2 + vuex + vue-router +  + ES6/7 + less + vant
 
 ## 环境
 ```
@@ -191,7 +191,18 @@ methods:{
 | @change | 上传回调 | {name:String,value:Array} |
 | @customUpLoad | 自定义上传（上传图片的值） | new FormData |
 
-## 4自定义上传图片组件
+## 4.Qrcode 二维码
+```
+<Qrcode code='二维码组件'></Qrcode>
+```
+### Props
+| 参数 | 说明                                         | 类型   | 默认值 |
+| :--- | -------------------------------------------- | :----- | :----- |
+| code  | 二维码值                                 | String |  无  |
+| color | 二维码颜色 | String | #333 |
+| preview | 是否开启二维码点击预览（基于vant） | Boolean | true |
+
+## 5.自定义上传图片组件
 ```
 <upload :mode="false" path='fullUrl' :max='3' @change="changeUpload">
   //自定义icon
@@ -221,15 +232,4 @@ methods:{
 | 事件名  | 说明     | 回调参数                  |
 | :------ | -------- | :------------------------ |
 | @change | 上传回调 | {name:String,value:Array} |
-
-## 4.Qrcode 二维码
-```
-<Qrcode code='二维码组件'></Qrcode>
-```
-### Props
-| 参数 | 说明                                         | 类型   | 默认值 |
-| :--- | -------------------------------------------- | :----- | :----- |
-| code  | 二维码值                                 | String |  无  |
-| color | 二维码颜色 | String | #333 |
-| preview | 是否开启二维码点击预览（基于vant） | Boolean | true |
 
