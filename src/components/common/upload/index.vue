@@ -1,6 +1,8 @@
 <template>
   <!-- :after-read="afterRead" -->
-  <van-uploader v-model="fileList" :before-read="beforeRead"  :max-size="maxSize*1024*1024" :max-count="limit" @oversize="onOversize" />
+  <van-uploader :upload-icon="icon" v-model="fileList" :before-read="beforeRead"  :max-size="maxSize*1024*1024" :max-count="limit" @oversize="onOversize">
+    <slot></slot>
+  </van-uploader>
 </template>
 
 <script>
@@ -56,6 +58,12 @@ export default {
       type:Object,
       default:()=>{}
     },
+
+    // 上传图标icon（vant icon）
+    icon:{
+      type:String,
+      default:'plus'
+    }
   },
 
   data () {

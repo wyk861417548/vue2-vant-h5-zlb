@@ -149,12 +149,12 @@ export default {
 </script>
 ```
 
-## 基于vant的上传组件
+## 3.基于vant的上传组件
 ```
 <!-- 自定义上传 -->
 <upload path='url' :limit='3' :defaultFileList="defaultFileList" @change="changeUpload" :customFile="customFile" :isCustom="true" @customUpLoad="customUpLoad"></upload>
 
-<!-- 简单使用 -->
+<!-- 简单使用 也支持vant上传组件的自定义样式-->
 <upload @change="changeUpload"></upload>
 
 methods:{
@@ -180,7 +180,8 @@ methods:{
 | limit  | *最大上传数*                                 | Number | 1      |
 | path | *上传接口返回图片字段* | String | url   |
 | name | *用于父组件接受已上传的图片名称*             | String | upload |
-| defaultFileList | *设置默认展示图片 注意：必须包含url值图片地址* *             | Boolean | false |
+| icon | *中间展示图标,只支持vant图标*             | String | plus |
+| defaultFileList | *设置默认展示图片 （注意：必须包含url值图片地址）* *             | Boolean | false |
 | isCustom | *是否启用自定义上传*             | Boolean | false |
 | customFile | *自定义上传返回结果（搭配customUpLoad事件使用） 注意：必须包含url值图片地址*             | Object | {} |
 
