@@ -90,19 +90,23 @@ export default {
         this.$config.tip("只支持jpeg','jpg','png格式图片");
         return;
       }
-
-      var param = new FormData();
-
+      
       this.$config.kCompass({fileinput:file[0]}).then(({result}) => {
-        var files = this.$config.dataURLtoFile(result,file[0].name)
-        param.append('file',files);
-        this.upload(param);
-      });
+        var files = this.$config.dataURLtoFile(result,file.name)
+        
+        // 手机拍照图片旋转90度修复
+        this.$config.compressorImage(files).then(res=>{
+          this.upload(res)
+        })
+      })
     },
 
 
     // 上传图片
-    upload(param){
+    upload(files){
+      var param = new FormData();
+      param.append('file',files);
+
       this.$api.common.upload(param).then(res=>{
         this.$refs.inputer.value = null;
         this.uploadList.push(res);

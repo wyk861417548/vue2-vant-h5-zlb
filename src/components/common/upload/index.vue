@@ -6,7 +6,6 @@
 </template>
 
 <script>
-// import Compressor from 'compressorjs';
 export default {
   props:{
     // 最大上传数
@@ -83,22 +82,30 @@ export default {
     beforeRead(file) {
       if(!this.handleFileType(file))return;
 
+      // 图片压缩
       this.$config.kCompass({fileinput:file}).then(({result}) => {
         var files = this.$config.dataURLtoFile(result,file.name)
-
-        var param = new FormData();
-        param.append('file',files);
-
-        // 是否自己写上传
-        if(this.isCustom){
-          this.$emit('customUpLoad',param)
-          return;
-        }
-
-        // 需要保证url属性存在
-        this.$api.common.upload(param).then(res=>{
-          this.fileList.push({url:res[this.path],...res});
+        
+        // 手机拍照图片旋转90度修复
+        this.$config.compressorImage(files).then(res=>{
+          this.upload(res)
         })
+      })
+    },
+
+    upload(files){
+      var param = new FormData();
+      param.append('file',files);
+
+      // 是否自己写上传
+      if(this.isCustom){
+        this.$emit('customUpLoad',param)
+        return;
+      }
+
+      // 需要保证url属性存在
+      this.$api.common.upload(param).then(res=>{
+        this.fileList.push({url:res[this.path],...res});
       })
     },
 
@@ -145,4 +152,9 @@ export default {
 }
 </script>
 <style lang='less' scoped>
+::v-deep.van-uploader{
+  .van-uploader__upload-icon{
+    font-size: 14px;
+  }
+}
 </style>
