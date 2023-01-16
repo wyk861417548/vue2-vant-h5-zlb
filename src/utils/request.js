@@ -72,8 +72,8 @@ export function request(params){
 
   return new Promise((resolve,reject) => {
     service(params).then(res=>{
-      return requestHandle(res,params.opt,resolve,reject);
-    }).catch(()=>{})
+      requestHandle(res,params.opt,resolve,reject);
+    }).catch((err)=>{reject(err)})
   })
 }
 

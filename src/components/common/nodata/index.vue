@@ -3,7 +3,7 @@
 		<div class="j-full-center" style="text-align: center;top: 40%;">
       <slot>
         <img src="@/assets/images/error/nodata.png" alt="图片">
-        <div style="color:#5A5B5C;">{{this.text}}</div>
+        <div style="color:#5A5B5C;">{{text}}</div>
       </slot>
 		</div>
 	</div>
