@@ -60,22 +60,22 @@ export default {
       date:'',
 
       defaultFileList:[
-          {
-              "msg": "操作成功",
-              "fileName": "/profile/upload/2022/12/16/1.png_20221216142827A039.jpeg",
-              "code": 200,
-              "newFileName": "1.png_20221216142827A039.jpeg",
-              "url": "http://192.168.0.187:8041/profile/upload/2022/12/16/1.png_20221216142827A039.jpeg",
-              "originalFilename": "1.png.jpeg"
-          },
-          {
-              "msg": "操作成功",
-              "fileName": "/profile/upload/2022/12/16/1.png_20221216142832A040.jpeg",
-              "code": 200,
-              "newFileName": "1.png_20221216142832A040.jpeg",
-              "url": "http://192.168.0.187:8041/profile/upload/2022/12/16/1.png_20221216142832A040.jpeg",
-              "originalFilename": "1.png.jpeg"
-          }
+        {
+          "msg": "操作成功",
+          "fileName": "/profile/upload/2022/12/16/1.png_20221216142827A039.jpeg",
+          "code": 200,
+          "newFileName": "1.png_20221216142827A039.jpeg",
+          "url": "http://192.168.0.187:8041/profile/upload/2022/12/16/1.png_20221216142827A039.jpeg",
+          "originalFilename": "1.png.jpeg"
+        },
+        {
+          "msg": "操作成功",
+          "fileName": "/profile/upload/2022/12/16/1.png_20221216142832A040.jpeg",
+          "code": 200,
+          "newFileName": "1.png_20221216142832A040.jpeg",
+          "url": "http://192.168.0.187:8041/profile/upload/2022/12/16/1.png_20221216142832A040.jpeg",
+          "originalFilename": "1.png.jpeg"
+        }
       ],
 
       customFile:{}
@@ -96,7 +96,7 @@ export default {
 
 
     customUpLoad(FormData){
-      // 需要保证url属性存在
+      //customFile中 需要保证url属性存在
       this.$api.common.upload(FormData).then(res=>{
         this.customFile = res;
         console.log('this.customFile',this.customFile);

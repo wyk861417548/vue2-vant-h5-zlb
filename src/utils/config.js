@@ -99,6 +99,21 @@ export default {
     return str;
   },
 
+  /**
+   * 打开地图导航
+   * @param name 地点名称
+   * @param lng 经度
+   * @param lat 维度
+   */
+  openMapNav (name = '', lng = '', lat = '') {
+    const _ua = $vue.$store.state.browerEnvStatus
+    if (_ua.zlb) {
+      window.ZWJSBridge.openLink({
+        url: `zwfw://openThirdMap?longitude=${lng}&latitude=${lat}&locationName=${name}`
+      })
+    }
+  }
+
   /**小数不四舍五入
    * @param {*} num 需要转换金
    * @param {*} type 0：元  1：万元  2:亿元 以此类推

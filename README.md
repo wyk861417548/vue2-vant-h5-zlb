@@ -181,9 +181,9 @@ methods:{
 | path | *上传接口返回图片字段* | String | url   |
 | name | *用于父组件接受已上传的图片名称*             | String | upload |
 | icon | *中间展示图标,只支持vant图标*             | String | plus |
-| defaultFileList | *设置默认展示图片 （注意：必须包含url值图片地址）* *             | Boolean | false |
+| defaultFileList | *设置默认展示图片 （注意：必须包含url值 即图片地址 [{url:'xxx'}]）* *             | Array | [] |
 | isCustom | *是否启用自定义上传*             | Boolean | false |
-| customFile | *自定义上传返回结果（搭配customUpLoad事件使用） 注意：必须包含url值图片地址*             | Object | {} |
+| customFile | *自定义上传返回结果（搭配customUpLoad事件使用） 注意：必须包含url值,即图片地址{url:'xxx'}*             | Object | {} |
 
 ### Events
 
