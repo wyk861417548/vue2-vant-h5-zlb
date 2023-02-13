@@ -55,7 +55,10 @@ ios(){
 │   ├── utils                  # 全局公用方法
         ├──config（文件夹）     # 公共方法拆分的js文件
           ├──idCard            # 身份证处理相关
-          ├──kCompass          # 图片压缩
+          ├──brower            # 游览器判断
+          ├──compressorjs      # 图片压缩以及处理拍照上传旋转90度问题（搭配kCompass压缩使用）
+          ├──idCard            # 身份证处理相关
+          ├──kCompass          # 图片压缩（自定义通过canvas进行压缩，压缩效率比compressorjs好，所以不使用compressorjs的压缩）
           ├──LazyloadImg       # 图片懒加载（配置）
           ├──loading           # 全局动画加载
           ├──url               # 地址栏处理相关

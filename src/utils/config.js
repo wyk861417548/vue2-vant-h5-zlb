@@ -112,7 +112,7 @@ export default {
         url: `zwfw://openThirdMap?longitude=${lng}&latitude=${lat}&locationName=${name}`
       })
     }
-  }
+  },
 
   /**小数不四舍五入
    * @param {*} num 需要转换金

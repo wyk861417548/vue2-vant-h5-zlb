@@ -7,25 +7,20 @@
     @mouseenter.native="on_bot_enter" 
     @mouseleave.native="on_bot_leave"
   >
-    <slot>
-      <swiper-slide>
-        <img style="display:block;" width="100%" src="@/assets/images/lazy/default_banner.png" alt="">
-      </swiper-slide>
-    </slot>
+    <slot></slot>
     <div class="swiper-pagination" slot="pagination"></div>
   </swiper>
 </template>
 
 <script>
-// 引入插件
-import { swiper, swiperSlide } from "vue-awesome-swiper";
+// 引入插件 swiperSlide
+import { swiper } from "vue-awesome-swiper";
 import "swiper/dist/css/swiper.css";
 
 export default {
-  props: ["option"],
+  props: ["options"],
   components: {
     swiper,
-    swiperSlide,
   },
   data() {
     return {
@@ -69,7 +64,7 @@ export default {
     };
   },
   created() {
-    this.merge(this.option);
+    this.merge(this.options);
   },
 
   computed: {
@@ -90,10 +85,10 @@ export default {
       this.swiper.autoplay.start()
     },
 
-    merge(option) {
-      if (option) {
-        for (const key in option) {
-          this.swiperOption[key] = option[key];
+    merge(options) {
+      if (options) {
+        for (const key in options) {
+          this.swiperOption[key] = options[key];
         }
       }
       return this.swiperOption;
@@ -101,7 +96,7 @@ export default {
   },
 
   watch: {
-    option: {
+    options: {
       handler(newVal) {
         for (const key in newVal) {
           this.swiperOption[key] = newVal[key];

@@ -8,9 +8,10 @@
 </template>
 
 <script>
-import suitable from '@/mixins/suitable.js'
+// 浙里办适老化配置
+// import suitable from '@/mixins/suitable.js'
 export default{
-  mixins:[suitable],
+  // mixins:[suitable],
 
   data(){
     return {

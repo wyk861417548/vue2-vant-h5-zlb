@@ -72,7 +72,7 @@ function windowflex(win, lib, $vue) {
             width = 540 * dpr;
         }
         
-        //适老化  解决输入框弹出后导致 重新rem适配)
+        console.log('适老化  解决输入框弹出后导致 重新rem适配',$vue.$store.state.storage.uiStyle)
         var rem = width / ($vue.$store.state.storage.uiStyle == 'elder' ? 10/1.3 : 10);
         docEl.style.fontSize = rem + 'px';
         flexible.rem = win.rem = rem;

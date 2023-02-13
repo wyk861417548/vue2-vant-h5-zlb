@@ -1,4 +1,5 @@
 // 浙里办适老化适配
+import { mapState } from 'vuex';
 export default {
   created(){
     // 0:普通 1:微信 2:支付宝 3:浙里办 4：微信端浙里办  5:支付宝浙里办
@@ -10,6 +11,14 @@ export default {
       this.init = true;
     }
   },
+
+  computed:mapState({
+    // 适老化
+    uiStyle(state){
+      return state.storage.uiStyle
+    }
+  }),
+  
   methods:{
     initZWJSBridge(brower){
       ZWJSBridge.onReady(() => {
@@ -49,9 +58,11 @@ export default {
     //   flexible.rem = win.rem = rem;
     // }
     setUiStyle(uiStyle){
-      if(uiStyle == 'normal'){  
+      if(uiStyle == 'normal'){
+        this.$store.commit('setUiStyle','normal')
         document.documentElement.style.fontSize = (window.innerWidth/10) +'px';
       }else{
+        this.$store.commit('setUiStyle','elder')
         document.documentElement.style.fontSize = (window.innerWidth/10*1.3) +'px';
       }
     },
