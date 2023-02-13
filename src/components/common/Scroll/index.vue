@@ -1,5 +1,6 @@
 <template>
-  <div class="my-scroll j-full-curbox" ref="scroll" id="scroll" @scroll="onScroll">
+  <!-- passive 监听器不会调用e.preventDefault()函数 从而提高流畅性 -->
+  <div class="my-scroll j-full-curbox" ref="scroll" id="scroll" @scroll.passive="onScroll">
 
     <slot></slot>
 
@@ -20,26 +21,19 @@
 export default {
   data () {
     return {
-      position:{
-        scrollHeight:"",
-        scrollTop:0,
-        clientHeight:""
-      },
+      // 距离头部距离
+      scrollTop:0,
 
       // 距离底部还有多远触发
       bottom:10,
 
       //上拉加载默认状态 0：可加载 1：无数据 2已结束 3:加载中
-      status:3
+      status:3,
     };
   },
 
   activated(){
-    // 设置离开前的位置距离
-    this.$nextTick(()=>{
-      this.$refs.scroll.scrollTop = this.position.scrollTop;
-    })
-    
+    this.setScrollTop();
   },
 
   methods:{
@@ -48,11 +42,7 @@ export default {
       // 当前1滚动盒子
       var aim = e.target;
 
-      this.position ={
-        scrollHeight:aim.scrollHeight,
-        scrollTop:aim.scrollTop,
-        clientHeight:aim.clientHeight
-      }
+      this.scrollTop = aim.scrollTop;
 
       // 如果还是加载中的状态 this.status !=0 || 
       if(this.status !=0)return;
@@ -65,7 +55,14 @@ export default {
         this.status = 3;
         this.$emit("scroll",{site:site})
       }
-    }
+    },
+
+    // 设置离开前的位置距离
+    setScrollTop(top){
+      this.$nextTick(()=>{
+        this.$refs.scroll.scrollTop = top || this.scrollTop;
+      })
+    },
   },
 };
 </script>

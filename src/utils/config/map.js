@@ -46,3 +46,15 @@ export function getLocationGD(){
   })
   
 }
+
+/**
+ * 跳转高德地图
+ * @param {*} info 
+ * lng:经度
+ * lat:纬度
+ * name:地址名称
+ */
+
+ export function jumpGdMap(info = {}){
+  location.href = `https://uri.amap.com/marker?markers=${info.lng},${info.lat},${info.name}&src=mypage&callnative=0`
+}
