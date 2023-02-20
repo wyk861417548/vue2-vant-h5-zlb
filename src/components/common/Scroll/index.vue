@@ -21,7 +21,7 @@
 export default {
   data () {
     return {
-      // 距离头部距离
+      // 滚动距离
       scrollTop:0,
 
       // 距离底部还有多远触发

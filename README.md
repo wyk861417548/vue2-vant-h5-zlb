@@ -193,6 +193,7 @@ methods:{
 | 事件名  | 说明     | 回调参数                  |
 | :------ | -------- | :------------------------ |
 | @change | 上传回调 | {name:String,value:Array} |
+| @input | 上传回调 | {change事件value值的字符串（','）拼接，也可以直接在组件调用地方使用v-model直接进行双向绑定获取值} |
 | @customUpLoad | 自定义上传（上传图片的值） | new FormData |
 
 ## 4.Qrcode 二维码

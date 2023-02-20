@@ -129,7 +129,20 @@ export default {
       obj[next[key]]?"":obj[next[key]]=true&&item.push(next)
       return item;
     },[])
+  },
+
+  /**
+   * // 获取文件页数 (暂时只支持pdf 正则的问题)
+   * @param {*} file 
+   */
+  getFilePages(file) {
+    var reader = new FileReader();
+    reader.readAsBinaryString(file);
+    reader.onloadend = function() {
+      return reader.result.match(/\/Type[\s]*\/Page[^s]/g).length;
+    };
   }
+
 }
 
 Date.prototype.format = function (fmt) { 

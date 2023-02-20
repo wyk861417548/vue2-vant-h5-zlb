@@ -124,13 +124,15 @@ export default {
       this.$config.tip(`上传文件大小不能超过${this.maxSize}MB!`);
     },
 
+    // 组件使用v-model绑定 直接处理成字符串拼接返回
+    listToString(list){
+      return list.map(item=>item.[this.path]).join(',')
+    }
+
 
     change(){
-      var data = {
-        name:this.name,
-        value:this.fileList
-      }
-      this.$emit('change',data)
+      this.$emit('input',this.listToString(this.fileList))
+      this.$emit("change",{name:this.name,value:this.fileList})
     }
   }
 }

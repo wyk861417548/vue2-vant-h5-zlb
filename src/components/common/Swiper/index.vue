@@ -3,7 +3,6 @@
     class="swiper-container"
     :options="swiperOption"
     ref="mySwiper"
-    @click-slide="handleClickSlide"
     @mouseenter.native="on_bot_enter" 
     @mouseleave.native="on_bot_leave"
   >
@@ -64,6 +63,7 @@ export default {
     };
   },
   created() {
+    console.log('options',this.options);
     this.merge(this.options);
   },
 
@@ -73,10 +73,6 @@ export default {
     },
   },
   methods: {
-    handleClickSlide(index) {
-      console.log("clie", index);
-    },
-
     //通过获得的swiper对象来暂停自动播放
     on_bot_enter() {
       this.swiper.autoplay.stop()

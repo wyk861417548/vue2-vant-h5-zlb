@@ -3,6 +3,7 @@
  * @param {*} type 不传默认扫描二维码 传值为真 扫描条形码
  * @returns 
  */
+
 export function scan(type){
   //检测是微信还是支付宝 0:普通 1:微信 2:支付宝 3:浙里办
   if(checkBrowser() == 3){
@@ -22,7 +23,7 @@ export function scanZFB(type){
     window.ap.scan({
       type: type?'qr':'bar'
     },(res)=>{
-      resolve(res.code)
+      res.code && resolve(res.code)
     });
   })
 }
@@ -44,7 +45,7 @@ export function scanZLB(type){
 
 // 浙里办拨打电话
 export function call(phone){
-  if(window.ZWJSBridge){
+  if(window.ZWJSBridge && [3,4,5].includes(checkBrowser())){
     ZWJSBridge.phoneCall({
       corpId:phone
     });

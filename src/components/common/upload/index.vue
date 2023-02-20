@@ -105,7 +105,7 @@ export default {
 
       // 需要保证url属性存在
       this.$api.common.upload(param).then(res=>{
-        this.fileList.push({url:res[this.path],...res});
+        this.fileList.push({url:res.data[this.path],...res.data});
       })
     },
 
@@ -127,17 +127,19 @@ export default {
 
     onOversize(){
       this.$config.tip(`上传文件大小不能超过${this.maxSize}MB!`);
+    },
+
+    // 组件使用v-model绑定 直接处理成字符串拼接返回
+    listToString(list){
+      return list.map(item=>item.url).join(',')
     }
   },
 
   watch:{
     fileList:{
       handler(newVal){
-        var data = {
-          name:this.name,
-          value:newVal
-        }
-        this.$emit("change",data)
+        this.$emit('input',this.listToString(newVal))
+        this.$emit("change",{name:this.name,value:newVal})
       }
     },
 
