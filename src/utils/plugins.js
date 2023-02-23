@@ -15,12 +15,13 @@ Vue.prototype.$ImagePreview = ImagePreview;
 
 
 import Vconsole from 'vconsole'
-setTimeout(()=>{
-  if (process.env.VUE_APP_MODE != 'production' || sessionStorage.__CONSOLE__ == 'true') {
+// process.env.VUE_APP_MODE != 'production' ||
+if(sessionStorage.__CONSOLE__ == 'true') {
+  setTimeout(()=>{
     let vConsole = new Vconsole()
     Vue.use(vConsole)
-  }
-},0)
+  },0)
+}
 
 
 // 图片懒加载
