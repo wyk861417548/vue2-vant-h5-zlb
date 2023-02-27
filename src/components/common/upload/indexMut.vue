@@ -131,7 +131,11 @@ export default {
 
       // 需要保证url属性存在
       this.$api.common.upload(param).then(res=>{
-        this.fileList.push({url:res.data[this.path],...res.data});
+        if(this.isArray){
+          
+        }else{
+          this.fileList.push({url:res.data[this.path],...res.data});
+        }
 
         this.handleStatus(files);
       }).catch(()=>{this.handleStatus(files,'failed','上传失败')})
@@ -146,8 +150,8 @@ export default {
     },
     
     batchStatus(files,status='done',message='上传成功'){
-      files.status = 'uploading';
-      files.message = '上传中...';
+      files.status = status;
+      files.message = message;
     },
 
     // 压缩处理
