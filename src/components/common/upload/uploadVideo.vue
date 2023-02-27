@@ -59,23 +59,15 @@ export default {
       currentVideo:'',
 
       show:false,
-
-
     }
   },
 
   methods:{
-    // 全屏展示视频
-    handleFullScreen(){
-
-    },
-
     showVideo(video) {
       this.currentVideo = video;
       this.show = true;
     },
     
-
     afterRead(files){
       if(!this.handleFileType(files.file))return;
 
@@ -96,7 +88,7 @@ export default {
         files.url = res.data[this.path];
         this.change();
 
-      }).catch((err)=>{
+      }).catch(()=>{
         this.fileList.pop()
         this.change();
       })
@@ -126,9 +118,8 @@ export default {
 
     // 组件使用v-model绑定 直接处理成字符串拼接返回
     listToString(list){
-      return list.map(item=>item.[this.path]).join(',')
-    }
-
+      return list.map(item=>item[this.path]).join(',')
+    },
 
     change(){
       this.$emit('input',this.listToString(this.fileList))

@@ -69,20 +69,6 @@ input[type="checkbox"]:checked::after{content: "";position: absolute;left: 50%;t
 .ban{pointer-events: none;}
 .ban-child > *{pointer-events: none;}
 
-/* button button设置默认样式*/
-.el-button{padding:12px 20px;line-height:1;font-weight: 500;font-size: 14px;box-sizing: border-box;background: #fff;outline: none;border:1px solid #dcdfe6;border-radius: 4px;white-space: nowrap;cursor: pointer;transition: .1s;}
-.el-button:hover {color: #409eff;border-color: #c6e2ff;background-color: #ecf5ff;}
-.el-button-primary {color: #fff;background-color: #409eff;border-color: #409eff;}
-.el-button-primary:hover{background: #66b1ff;border-color: #66b1ff;color: #fff;}
-.el-button-success {color: #fff;background-color: #39C49E;border-color: #39C49E;}
-.el-button-success:hover {background: #5adab8;border-color: #5adab8;color: #fff;}
-.el-button-warning {color: #fff;background-color: #e6a23c;border-color: #e6a23c;}
-.el-button-warning:hover {background: #ebb563;border-color: #ebb563;color: #fff;}
-.el-button-danger {color: #fff;background-color: #f56c6c;border-color: #f56c6c;}
-.el-button-danger:hover {background: #f78989;border-color: #f78989; color: #fff;}
-.el-disabled {pointer-events: none;border:none; cursor: default;opacity: 0.6;background: rgba(0, 0, 0, 0.2);}
-.el-disabled:hover{background: rgba(0, 0, 0, 0.2);border:none;}
-
 /* flex布局 */
 .flex{display: flex;}
 .flex-fit{flex:1;}

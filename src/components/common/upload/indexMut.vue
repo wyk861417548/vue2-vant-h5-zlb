@@ -1,6 +1,13 @@
 <template>
-  <!-- :after-read="afterRead" -->
-  <van-uploader :upload-icon="icon" v-model="fileList" :before-read="beforeRead"  :max-size="maxSize*1024*1024" :max-count="limit" @oversize="onOversize">
+  <!-- :after-read="afterRead" :before-read="beforeRead"  -->
+  <van-uploader 
+    :upload-icon="icon" 
+    :multiple="multiple" 
+    :max-size="maxSize*1024*1024" 
+    :max-count="limit" 
+    v-model="fileList" 
+    :after-read="afterRead"
+    @oversize="onOversize">
     <slot></slot>
   </van-uploader>
 </template>
@@ -62,12 +69,20 @@ export default {
     icon:{
       type:String,
       default:'plus'
+    },
+
+    // 部分安卓机不支持
+    multiple:{
+      type:Boolean,
+      default:false
     }
   },
 
   data () {
     return {
-      fileList:[]
+      fileList:[],
+
+      isArray:false
     };
   },
 
@@ -79,23 +94,34 @@ export default {
   },
 
   methods: {
-    beforeRead(file) {
-      if(!this.handleFileType(file))return;
+    afterRead(files){
+      this.isArray = Array.isArray(files);
 
-      // 图片压缩
-      this.$config.kCompass({fileinput:file}).then(({result}) => {
-        var files = this.$config.dataURLtoFile(result,file.name)
-        
-        // 手机拍照图片旋转90度修复
-        this.$config.compressorImage(files).then(res=>{
-          this.upload(res)
+      if(!this.handleFileType(files))return;
+      
+      if(this.isArray){
+        Promise.all(files.map(files=>this.batchkCompass(files))).then(()=>{
+          this.upload(files);
         })
-      })
+      }else{
+        this.batchkCompass(files).then(()=>{
+          this.upload(files);
+        })
+      }
     },
 
     upload(files){
+      console.log('files',files);
+
       var param = new FormData();
-      param.append('file',files);
+      
+      if(this.isArray){
+        for (let i = 0; i < files.length; i++) {
+          param.append('file',files[i].file);
+        }
+      }else{
+        param.append('file',files.file);
+      }
 
       // 是否自己写上传
       if(this.isCustom){
@@ -106,14 +132,57 @@ export default {
       // 需要保证url属性存在
       this.$api.common.upload(param).then(res=>{
         this.fileList.push({url:res.data[this.path],...res.data});
+
+        this.handleStatus(files);
+      }).catch(()=>{this.handleStatus(files,'failed','上传失败')})
+    },
+
+    handleStatus(files,status='done',message='上传成功'){
+      if(this.isArray){
+        files.forEach(file => this.batchStatus(file,status,message))
+      }else{
+        this.batchStatus(files,status,message)
+      }
+    },
+    
+    batchStatus(files,status='done',message='上传成功'){
+      files.status = 'uploading';
+      files.message = '上传中...';
+    },
+
+    // 压缩处理
+    batchkCompass(files){
+      const {file} = files;
+      return new Promise(resolve=>{
+        this.$config.kCompass({fileinput:file}).then(({result}) => {
+          const _files_ = this.$config.dataURLtoFile(result,file.name)
+
+          // 手机拍照图片旋转90度修复
+          this.$config.compressorImage(_files_).then(res=>{
+            files.file = res;
+            resolve();
+          })
+        })
       })
     },
 
     // 上传类型判断
-    handleFileType(file){
+    handleFileType(files){
+      if(this.isArray){
+        // 如果找到上传文件类型不支持的
+        return files.some(file=>!this.handleFileTypeDeal(file))?false:true;
+      }else{
+        return this.handleFileTypeDeal(files);
+      }
+    },
+
+    handleFileTypeDeal(files){
       let msg  = `只支持${this.fileType.join(',')}格式的文件`
 
-      const flieArr = file.name.split('.'); // 根据.分割数组
+      files.status = 'uploading';
+      files.message = '上传中...';
+
+      const flieArr = files.file.name.split('.'); // 根据.分割数组
       let suffix = flieArr[flieArr.length - 1]; // 取最后一个
       suffix = suffix && suffix.toLocaleLowerCase(); // 将后缀所有字母改为小写方便操作
 

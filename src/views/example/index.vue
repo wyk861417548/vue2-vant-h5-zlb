@@ -3,13 +3,23 @@
     <!-- class="j-full-curbox" -->
       <section class="custom-box">
         <h2 class="box-title">测试上传图片压缩（基于vant组件）</h2>
-        <upload @change="changeUpload"></upload>
+        <upload v-model="pic"></upload>
         <!-- <upload path='url' :limit='3' :defaultFileList="defaultFileList" @change="changeUpload" :customFile="customFile" :isCustom="true" @customUpLoad="customUpLoad"></upload> -->
       </section>
 
       <section class="custom-box">
         <h2 class="box-title">测试上传图片压缩（自定义）</h2>
         <custom-upload path='url' :limit='3' @change="changeUpload"></custom-upload>
+      </section>
+
+      <section class="custom-box">
+        <h2 class="box-title">测试上传多张图片</h2>
+        <indexMut path='url' :limit='3' @change="changeUpload"></indexMut>
+      </section>
+      <section class="custom-box">
+
+        <h2 class="box-title">测试上传视频</h2>
+        <uploadVideo path='url' :limit='3' @change="changeUpload"></uploadVideo>
       </section>
 
       <section class="custom-box">
@@ -30,6 +40,11 @@
       <section class="custom-box">
         <h2 class="box-title">测试不是详情返回缓存页面，是否刷新</h2>
         <button class="el-button el-button-primary" @click="$skip('/example/list')">scroll-切换</button>
+      </section>
+
+      <section class="custom-box">
+        <h2 class="box-title">图片懒加载</h2>
+        <button class="el-button el-button-primary" @click="$skip('/example/v-lazy')">图片懒加载</button>
       </section>
 
       <section class="custom-box">
@@ -54,10 +69,18 @@
 </template>
 
 <script>
+import uploadVideo from '@/components/common/upload/uploadVideo.vue';
+import indexMut from '@/components/common/upload/indexMut.vue';
 export default {
+  components:{
+    uploadVideo,
+    indexMut
+  },
   data () {
     return {
       date:'',
+
+      pic:[],
 
       defaultFileList:[
         {
