@@ -656,9 +656,9 @@
     regenerator-runtime "^0.13.4"
 
 "@babel/runtime@7.x":
-  version "7.20.6"
-  resolved "https://registry.npmmirror.com/@babel/runtime/-/runtime-7.20.6.tgz#facf4879bfed9b5326326273a64220f099b0fce3"
-  integrity sha512-Q+8MqP7TiHMWzSfwiJwXCjyf4GYA4Dgw3emg/7xmwsdLJOZUp+nMqcOwOzzYheuM1rhDu8FSj2l0aoMygEuXuA==
+  version "7.21.0"
+  resolved "https://registry.npmmirror.com/@babel/runtime/-/runtime-7.21.0.tgz#5b55c9d394e5fcf304909a8b00c07dc217b56673"
+  integrity sha512-xwII0//EObnq89Ji5AKYQaRYiW/nZ3llSv29d49IuxPhKbtJoLP+9QUUZ4nVragQVtaVGeZrpB+ZtG/Pdy/POw==
   dependencies:
     regenerator-runtime "^0.13.11"
 
@@ -8300,10 +8300,10 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
 
-vant@^2.6.0:
-  version "2.12.53"
-  resolved "https://registry.npmmirror.com/vant/-/vant-2.12.53.tgz#d8cc479a044c415b2e3d216a41ee3b7857730770"
-  integrity sha512-f/wSWMCm/fd8bvm2QfPkpPqYUn8gwmBGw3DxAUPSTd/5prc1cRn23HEak8LDMJ5FmfW9mp7G5vdGlnEYCtww8Q==
+vant@^2.12.54:
+  version "2.12.54"
+  resolved "https://registry.npmmirror.com/vant/-/vant-2.12.54.tgz#0bc52d80414422987cdb9b7e7c101a66d3647d8d"
+  integrity sha512-t7DCiLxNosDrg0Jm5EY9p0A5cAMo5OadmizbYtPEc0ru+OJKEa3kcfxtKIK5on7ZPqoOkyYJt8e6BQ1VDMPsrg==
   dependencies:
     "@babel/runtime" "7.x"
     "@vant/icons" "^1.7.1"
