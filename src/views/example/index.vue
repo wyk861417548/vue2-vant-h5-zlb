@@ -54,7 +54,7 @@
 
       <section class="custom-box">
         <h2 class="box-title">测试刷新页面vuex数据是否还是存在</h2>
-        <p class="mb-5">vuex:{{$store.state.token}}</p>
+        <p class="mb-5">vuex:{{$store.state.text}}</p>
         <button class="el-button el-button-primary" @click="reload">reload</button>
       </section>
 

@@ -158,7 +158,7 @@ export default {
 <upload path='url' :limit='3' :defaultFileList="defaultFileList" @change="changeUpload" :customFile="customFile" :isCustom="true" @customUpLoad="customUpLoad"></upload>
 
 <!-- 简单使用 也支持vant上传组件的自定义样式-->
-<upload @change="changeUpload"></upload>
+<upload @change="changeUpload" v-model=''></upload>
 
 methods:{
   // 自定义上传
@@ -184,7 +184,6 @@ methods:{
 | path | *上传接口返回图片字段* | String | url   |
 | name | *用于父组件接受已上传的图片名称*             | String | upload |
 | icon | *中间展示图标,只支持vant图标*             | String | plus |
-| defaultFileList | *设置默认展示图片 （注意：必须包含url值 即图片地址 [{url:'xxx'}]）* *             | Array | [] |
 | isCustom | *是否启用自定义上传*             | Boolean | false |
 | customFile | *自定义上传返回结果（搭配customUpLoad事件使用） 注意：必须包含url值,即图片地址{url:'xxx'}*             | Object | {} |
 
@@ -209,7 +208,7 @@ methods:{
 
 ## 5.自定义上传图片组件
 ```
-<upload :mode="false" path='fullUrl' :max='3' @change="changeUpload">
+<upload :mode="false" v-model='xxx' path='fullUrl' :max='3' @change="changeUpload">
   //自定义icon
   <template v-slot:icon>
     <van-icon name="photograph" size="25" />

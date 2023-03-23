@@ -41,9 +41,8 @@ export default {
     },
 
     // 默认展示图片
-    defaultFileList:{
-      type:Array,
-      default:()=>[]
+    value:{
+      type:[String,Array],
     },
 
     // 是否使用自定义上传接口
@@ -71,13 +70,6 @@ export default {
     };
   },
 
-  created(){
-    // 设置默认值
-    if(this.defaultFileList.length > 0){
-      this.fileList = this.defaultFileList;
-    }
-  },
-
   methods: {
     beforeRead(file) {
       if(!this.handleFileType(file))return;
@@ -98,10 +90,7 @@ export default {
       param.append('file',files);
 
       // 是否自己写上传
-      if(this.isCustom){
-        this.$emit('customUpLoad',param)
-        return;
-      }
+      if(this.isCustom)return this.$emit('customUpLoad',param);
 
       // 需要保证url属性存在
       this.$api.common.upload(param).then(res=>{
@@ -130,11 +119,21 @@ export default {
 
     // 组件使用v-model绑定 直接处理成字符串拼接返回
     listToString(list){
-      return list.map(item=>item.url).join(',')
+      return list.map(item=>item[this.path]).join(',')
     }
   },
 
   watch:{
+    // 默认值设置
+    value:{
+      handler(newVal){
+        if(newVal){
+          this.fileList = !Array.isArray(newVal) ? newVal.split(',').map(item=>({[this.path]:item})) : newVal;
+        }
+      },
+      immediate: true
+    },
+
     fileList:{
       handler(newVal){
         this.$emit('input',this.listToString(newVal))

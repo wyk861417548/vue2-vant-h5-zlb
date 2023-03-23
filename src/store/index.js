@@ -7,7 +7,9 @@ let state = {
   // 需要本地持久化放这里
   storage:{
     token:''
-  }
+  },
+
+  text:'xxx'
 }
 
 const store = new Vuex.Store({
@@ -21,7 +23,7 @@ const store = new Vuex.Store({
 
     // 设置token，调用 updateLocalStorage 并将其在 localStorage 持久化存储
     setToken(state,data){
-      state.token = data;
+      state.storage.token = data;
       $ST.updateLocalStorage(state);
     },
 
