@@ -28,6 +28,7 @@ i{margin-right:2px ;}
 
 /* 隐藏高德地图标识 */
 .amap-logo,.amap-copyright{display: none !important;}
+
 /* 用于解决禁用页面滚动事件，页面取消事件后页面还是不能滚动 */
 *{ touch-action: pan-y;}
 

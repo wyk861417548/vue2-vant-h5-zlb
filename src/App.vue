@@ -8,16 +8,9 @@
 </template>
 
 <script>
-// 浙里办适老化配置
-// import suitable from '@/mixins/suitable.js'
 export default{
-  // mixins:[suitable],
-
   data(){
-    return {
-      // 0:普通 1:微信 2:支付宝 3:浙里办 4：微信端浙里办  5:支付宝浙里办
-      brower:this.$config.checkBrowser(),
-    }
+    return {}
   },
 
   created(){

@@ -1,7 +1,15 @@
 /**
+ * /**
  * 图片base64压缩
  * 支持input 或者传入base64
  * 等比缩放，不裁剪不变形
+ *
+ * @param {*} opt 
+ * @param {*} opt.width 宽度 
+ * @param {*} opt.height 高度
+ * @param {*} opt.quality 质量 
+ * 
+ * @returns 
  */
 export function kCompass(opt) {
   const width = opt.width ? opt.width : 800
