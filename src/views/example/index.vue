@@ -11,11 +11,6 @@
         <h2 class="box-title">测试上传图片压缩（自定义）</h2>
         <custom-upload path='url' :limit='3' @change="changeUpload"></custom-upload>
       </section>
-
-      <section class="custom-box">
-        <h2 class="box-title">测试上传多张图片</h2>
-        <indexMut path='url' :limit='3' @change="changeUpload"></indexMut>
-      </section>
       <section class="custom-box">
 
         <h2 class="box-title">测试上传视频</h2>
@@ -70,11 +65,9 @@
 
 <script>
 import uploadVideo from '@/components/common/upload/uploadVideo.vue';
-import indexMut from '@/components/common/upload/indexMut.vue';
 export default {
   components:{
     uploadVideo,
-    indexMut
   },
   data () {
     return {
